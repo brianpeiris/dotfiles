@@ -25,6 +25,7 @@ Bundle 'scrooloose/syntastic'
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'pangloss/vim-javascript'
 
 filetype plugin indent on
 " / Vundle init
