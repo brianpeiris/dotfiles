@@ -27,6 +27,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'pangloss/vim-javascript'
 
+Bundle 'bling/vim-airline'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'majutsushi/tagbar'
+
 filetype plugin indent on
 " / Vundle init
 
@@ -51,3 +55,4 @@ set t_Co=256
 set t_ut=
 
 colorscheme Monokai
+highlight Search cterm=reverse
