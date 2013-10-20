@@ -2,4 +2,6 @@
 	name = Brian Peiris
 	email = brianpeiris@gmail.com
 [credential]
-	helper = cache --timeout=24000
+	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+[push]
+	default = simple
