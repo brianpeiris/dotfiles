@@ -56,3 +56,5 @@ set t_ut=
 
 colorscheme Monokai
 highlight Search cterm=reverse
+
+let g:ctrlp_clear_cache_on_exit=0
