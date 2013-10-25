@@ -1,4 +1,4 @@
-[ -s ".bashrc_base" ] && source .bashrc_base
+[ -s "$HOME/.bashrc_base" ] && source "$HOME/.bashrc_base"
 
 export PATH=$HOME/local/bin:$PATH
 
