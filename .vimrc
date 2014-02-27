@@ -30,6 +30,9 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'bling/vim-airline'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-dispatch'
+
+Bundle 'klen/python-mode'
 
 filetype plugin indent on
 " / Vundle init
@@ -58,3 +61,23 @@ colorscheme Monokai
 highlight Search cterm=reverse
 
 let g:ctrlp_clear_cache_on_exit=0
+
+set fdm=indent
+set foldignore=
+set foldcolumn=2
+set colorcolumn=80
+
+set cursorline
+set cursorcolumn
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
