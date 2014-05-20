@@ -82,3 +82,40 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+let g:airline_section_b='%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}'
+let g:airline_section_x=''
+
+function! WindowNumber()
+    let str=tabpagewinnr(tabpagenr())
+    return str
+endfunction
+
+let g:airline_section_y='win:%{WindowNumber()}'
+
+let i = 1
+while i <= 20
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+
+let NERDTreeIgnore = ['\.pyc$']
+map <Leader>s <esc>:wa<CR>
+imap <Leader>s <esc>:wa<CR>
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>
+
+set wildignore='*.pyc'
+
+let g:syntastic_auto_loc_list=1
+autocmd CursorHold *.py PymodeLint
+autocmd CursorHoldI *.py PymodeLint
+set updatetime=1000
+
+command! -nargs=+ Ackl Ack --ignore-dir=bower_components --ignore-file=is:tags <args>
+
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+set relativenumber
+set visualbell
+let g:pymode_rope_complete_on_dot=0
