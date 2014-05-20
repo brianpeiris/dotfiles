@@ -2,38 +2,39 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'tpope/vim-sensible'
+Plugin 'tpope/vim-sensible'
 
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
 
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
-Bundle 'tpope/vim-fugitive'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'pangloss/vim-javascript'
+Plugin 'tpope/vim-fugitive'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'pangloss/vim-javascript'
 
-Bundle 'bling/vim-airline'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-dispatch'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-dispatch'
 
-Bundle 'klen/python-mode'
+Plugin 'klen/python-mode'
 
+call vundle#end()
 filetype plugin indent on
 " / Vundle init
 
@@ -81,3 +82,40 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+let g:airline_section_b='%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}'
+let g:airline_section_x=''
+
+function! WindowNumber()
+    let str=tabpagewinnr(tabpagenr())
+    return str
+endfunction
+
+let g:airline_section_y='win:%{WindowNumber()}'
+
+let i = 1
+while i <= 20
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+
+let NERDTreeIgnore = ['\.pyc$']
+map <Leader>s <esc>:wa<CR>
+imap <Leader>s <esc>:wa<CR>
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>
+
+set wildignore='*.pyc'
+
+let g:syntastic_auto_loc_list=1
+autocmd CursorHold *.py PymodeLint
+autocmd CursorHoldI *.py PymodeLint
+set updatetime=1000
+
+command! -nargs=+ Ackl Ack --ignore-dir=bower_components --ignore-file=is:tags <args>
+
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+set relativenumber
+set visualbell
+let g:pymode_rope_complete_on_dot=0

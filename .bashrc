@@ -12,4 +12,9 @@ export TERM=screen-256color
 
 md () { mkdir -p "$@" && cd "$@"; }
 
+# disable flow control
 stty -ixon
+
+alias _git_current_branch="git rev-parse --abbrev-ref HEAD"
+alias pull='git pull origin $(_git_current_branch)'
+alias push='git push origin $(_git_current_branch)'
