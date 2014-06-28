@@ -34,6 +34,8 @@ Plugin 'tpope/vim-dispatch'
 
 Plugin 'klen/python-mode'
 
+Plugin 'rking/ag.vim'
+
 call vundle#end()
 filetype plugin indent on
 " / Vundle init
@@ -112,10 +114,17 @@ autocmd CursorHold *.py PymodeLint
 autocmd CursorHoldI *.py PymodeLint
 set updatetime=1000
 
-command! -nargs=+ Ackl Ack --ignore-dir=bower_components --ignore-file=is:tags <args>
+command! -nargs=+ Agl Ag --ignore-dir=.sass-cache --ignore-dir=_generated_media --ignore-dir=.ropeproject --ignore-dir=bower_components --ignore-file=is:.tags --ignore-file=is:tags <args>
 
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 set relativenumber
 set visualbell
 let g:pymode_rope_complete_on_dot=0
+
+command! Directory e %:h
+map <Leader><Leader>d <esc>:Directory<CR>
+imap <Leader><Leader>d <esc>:Directory<CR>
+
+set guifont=Ubuntu\ Mono\ 8
+highlight Search term=reverse cterm=reverse gui=reverse

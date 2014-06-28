@@ -18,3 +18,7 @@ stty -ixon
 alias _git_current_branch="git rev-parse --abbrev-ref HEAD"
 alias pull='git pull origin $(_git_current_branch)'
 alias push='git push origin $(_git_current_branch)'
+
+export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
+
+source /usr/local/bin/virtualenvwrapper.sh
