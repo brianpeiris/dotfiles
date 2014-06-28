@@ -63,6 +63,10 @@ set t_ut=
 colorscheme Monokai
 highlight Search cterm=reverse
 
+augroup filetypedetect
+    autocmd BufNew,BufNewFile,BufRead *.md :set filetype=markdown
+augroup END
+
 let g:ctrlp_clear_cache_on_exit=0
 
 set fdm=indent
