@@ -22,3 +22,14 @@ alias push='git push origin $(_git_current_branch)'
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 
 source /usr/local/bin/virtualenvwrapper.sh
+
+ludicrous-speed () {
+    for i in {0..7};
+    do
+        echo ''
+        cpufreq-info -c $i | ack -i --nocolor 'current cpu' | sed 's/^\s\+//g'
+        echo "Setting cpu $i to ludicrous speed.";
+        sudo cpufreq-set -c $i -g 'performance';
+        cpufreq-info -c $i | ack -i --nocolor 'current cpu' | sed 's/^\s\+//g'
+    done
+}
