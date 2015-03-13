@@ -12,10 +12,6 @@ Plugin 'tpope/vim-sensible'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'Lokaltog/vim-easymotion'
-
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
