@@ -75,6 +75,10 @@ set colorcolumn=80
 set cursorline
 set cursorcolumn
 
+" Enable local vimrcs
+set exrc
+set secure
+
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
