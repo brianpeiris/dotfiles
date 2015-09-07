@@ -8,6 +8,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sleuth'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -31,6 +32,8 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'klen/python-mode'
 Plugin 'fisadev/vim-isort'
 
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
 Plugin 'rking/ag.vim'
 
 call vundle#end()
@@ -52,20 +55,21 @@ set directory=$TEMP//,~/.tmp//.
 set statusline=%f\ %m\ %#warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %l/%L-%c%V
 
 " Delete trailing spaces on write.
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " Fix terminal weirdness
 set t_Co=256
 set t_ut=
 
 colorscheme Monokai
-highlight Search cterm=reverse
+autocmd ColorScheme * highlight Search cterm=reverse
 
 augroup filetypedetect
     autocmd BufNew,BufNewFile,BufRead *.md :set filetype=markdown
 augroup END
 
 let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_working_path_mode=0
 
 set fdm=indent
 set foldignore=
@@ -108,7 +112,7 @@ while i <= 20
     let i = i + 1
 endwhile
 
-let NERDTreeIgnore = ['\.pyc$']
+" let g:NERDTreeDirArrows=0
 
 map <Leader>s <esc>:wa<CR>
 imap <Leader>s <esc>:wa<CR>
@@ -141,3 +145,5 @@ highlight Search term=reverse cterm=reverse gui=reverse
 
 let g:NERDSpaceDelims=1
 let g:syntastic_check_on_open = 1
+
+set encoding=utf-8

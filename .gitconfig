@@ -1,7 +1,7 @@
 [user]
 	name = Brian Peiris
 	email = brianpeiris@gmail.com
-[credential]
-	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
 [push]
 	default = simple
+[core]
+	autocrlf = true

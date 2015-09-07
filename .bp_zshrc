@@ -1,0 +1,32 @@
+[ -s "/home/brianpeiris/.scm_breeze/scm_breeze.sh" ] && source "/home/brianpeiris/.scm_breeze/scm_breeze.sh"
+
+bindkey -v
+
+alias ec='vim ~/.bp_zshrc'
+alias rc='source ~/.bp_zshrc'
+
+WINHOME='/c/Users/brianpeiris'
+alias ~~='cd $WINHOME'
+~~
+
+function start_ssh_agent {
+    if [ -z "$SSH_AGENT_PID" ]; then
+        eval `ssh-agent -s` > /dev/null
+        ssh-add
+    fi
+}
+alias sa=start_ssh_agent
+
+function find_computer {
+    for i in {1..25};
+    do
+        ssh -o ConnectTimeout=1 192.168.1.$i 'uname -a' | grep $1
+        if [ $? = 0 ]; then
+            break
+        fi
+    done
+    echo $i;
+}
+alias fc=find_computer
+
+[ -s ~/.adhoc_zshrc ] && source ~/.adhoc_zshrc
