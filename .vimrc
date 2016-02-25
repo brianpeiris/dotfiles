@@ -12,6 +12,7 @@ Plugin 'tpope/vim-sleuth'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -29,20 +30,22 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
 
-Plugin 'klen/python-mode'
-Plugin 'fisadev/vim-isort'
+" Plugin 'klen/python-mode'
+" Plugin 'fisadev/vim-isort'
 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'rking/ag.vim'
 
 call vundle#end()
-filetype plugin indent on
+filetype plugin on
 " / Vundle init
+
+set rtp+=~/dotfiles/snippets
 
 set hlsearch
 set number
-set expandtab
+set noexpandtab
 set ts=4
 set sts=4
 set sw=4
@@ -51,6 +54,8 @@ set ignorecase
 set smartcase
 
 set directory=$TEMP//,~/.tmp//.
+set backupdir=$TEMP//,~/.tmp//.
+set undodir=$TEMP//,~/.tmp//.
 
 set statusline=%f\ %m\ %#warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %l/%L-%c%V
 
@@ -74,7 +79,7 @@ let g:ctrlp_working_path_mode=0
 set fdm=indent
 set foldignore=
 set foldcolumn=2
-set colorcolumn=80
+set colorcolumn=120
 
 set cursorline
 set cursorcolumn
@@ -112,18 +117,18 @@ while i <= 20
     let i = i + 1
 endwhile
 
-" let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows=0
 
 map <Leader>s <esc>:wa<CR>
 imap <Leader>s <esc>:wa<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
-set wildignore='*.pyc'
+set wildignore=*.mat,*.meta,*.pyc,*.prefab,*.asset
 
 let g:syntastic_auto_loc_list=1
-autocmd CursorHold *.py PymodeLint
-autocmd CursorHoldI *.py PymodeLint
+" autocmd CursorHold *.py PymodeLint
+" autocmd CursorHoldI *.py PymodeLint
 set updatetime=500
 
 command! -nargs=+ Agl Ag --ignore-dir=.sass-cache --ignore-dir=_generated_media --ignore-dir=.ropeproject --ignore-dir=bower_components --ignore-file=is:.tags --ignore-file=is:tags <args>
@@ -143,7 +148,19 @@ imap <Leader><Leader>d <esc>:Directory<CR>
 set guifont=Ubuntu\ Mono\ 8
 highlight Search term=reverse cterm=reverse gui=reverse
 
+let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
 let g:syntastic_check_on_open = 1
+let g:syntastic_javascript_checkers = ['eslint']
 
 set encoding=utf-8
+
+filetype plugin on
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$"']
+
+set nowrap
+
+let g:sparkupNextMapping = '<c-d>'
+
+command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>

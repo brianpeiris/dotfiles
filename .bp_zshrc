@@ -1,6 +1,8 @@
-[ -s "/home/brianpeiris/.scm_breeze/scm_breeze.sh" ] && source "/home/brianpeiris/.scm_breeze/scm_breeze.sh"
-
+# Vim mode
 bindkey -v
+bindkey -M vicmd '?' history-incremental-search-backward
+bindkey -M viins '^P' history-incremental-search-backward
+bindkey -M viins '^N' history-incremental-search-backward
 
 alias ec='vim ~/.bp_zshrc'
 alias rc='source ~/.bp_zshrc'
@@ -16,17 +18,33 @@ function start_ssh_agent {
     fi
 }
 alias sa=start_ssh_agent
+start_ssh_agent
 
-function find_computer {
-    for i in {1..25};
-    do
-        ssh -o ConnectTimeout=1 192.168.1.$i 'uname -a' | grep $1
-        if [ $? = 0 ]; then
-            break
+function run_smooth() {
+    command=$1
+    oldoutput=""
+    while (true) {
+        output=$(eval $command)
+        if [[ "$output" != "$oldoutput" ]] 
+        then
+            clear
+            echo -E "\n$output"
+            oldoutput="$output"
         fi
-    done
-    echo $i;
+        tput cup 0 0
+        echo $(date)
+        sleep 1
+    }
 }
-alias fc=find_computer
+alias rs=run_smooth
+
+function adb_remote() {
+	adb tcpip 5555
+	adb connect 192.168.1.6
+}
+alias adbr=adb_remote
+alias adbi='adb install -r'
+alias adbd='adb disconnect'
+alias adbl='adb devices'
 
 [ -s ~/.adhoc_zshrc ] && source ~/.adhoc_zshrc
