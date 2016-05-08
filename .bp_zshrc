@@ -1,3 +1,6 @@
+# Disable flow control
+stty -ixon
+
 # Vim mode
 bindkey -v
 bindkey -M vicmd '?' history-incremental-search-backward
@@ -7,9 +10,8 @@ bindkey -M viins '^N' history-incremental-search-backward
 alias ec='vim ~/.bp_zshrc'
 alias rc='source ~/.bp_zshrc'
 
-WINHOME='/c/Users/brianpeiris'
+WINHOME=$(cygpath $HOMEPATH)
 alias ~~='cd $WINHOME'
-~~
 
 function start_ssh_agent {
     if [ -z "$SSH_AGENT_PID" ]; then
@@ -28,19 +30,20 @@ function run_smooth() {
         if [[ "$output" != "$oldoutput" ]] 
         then
             clear
+            tput cup 2 0
             echo -E "\n$output"
             oldoutput="$output"
         fi
         tput cup 0 0
         echo $(date)
-        sleep 1
+        sleep $2
     }
 }
 alias rs=run_smooth
 
 function adb_remote() {
-	adb tcpip 5555
-	adb connect 192.168.1.6
+    adb tcpip 5555
+    adb connect 192.168.1.6
 }
 alias adbr=adb_remote
 alias adbi='adb install -r'
