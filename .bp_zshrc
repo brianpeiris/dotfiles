@@ -7,8 +7,8 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-alias ec='vim ~/.bp_zshrc'
-alias rc='source ~/.bp_zshrc'
+alias ec='vim ~/dotfiles/.bp_zshrc'
+alias rc='source ~/dotfiles/.bp_zshrc'
 
 WINHOME=$(cygpath $HOMEPATH)
 alias ~~='cd $WINHOME'
@@ -49,5 +49,7 @@ alias adbr=adb_remote
 alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
+
+alias code='cd $WINHOME/Code'
 
 [ -s ~/.adhoc_zshrc ] && source ~/.adhoc_zshrc
