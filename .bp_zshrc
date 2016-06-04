@@ -7,11 +7,14 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
+winhome=$(cygpath $HOMEPATH)
+
+adhoc=$winhome/.adhoc_zshrc
+alias ea='vim $adhoc'
 alias ec='vim ~/dotfiles/.bp_zshrc'
 alias rc='source ~/dotfiles/.bp_zshrc'
 
-WINHOME=$(cygpath $HOMEPATH)
-alias ~~='cd $WINHOME'
+alias ~~='cd $winhome'
 
 function start_ssh_agent {
     if [ -z "$SSH_AGENT_PID" ]; then
@@ -50,6 +53,8 @@ alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
 
-alias code='cd $WINHOME/Code'
+alias code='cd $winhome/Code'
 
-[ -s ~/.adhoc_zshrc ] && source ~/.adhoc_zshrc
+alias notes='tmux rename-window notes; vim $winhome/Documents/notes.txt'
+
+[ -s $adhoc ] && source $adhoc
