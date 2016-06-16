@@ -1,5 +1,6 @@
 # Install tmux
 pact install tmux
+pact install the_silver_searcher
 
 # Install scm_breeze
 git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
