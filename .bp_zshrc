@@ -1,14 +1,20 @@
+# Disable flow control
+stty -ixon
+
 # Vim mode
 bindkey -v
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-alias ec='vim ~/.bp_zshrc'
-alias rc='source ~/.bp_zshrc'
+winhome=$(cygpath $HOMEPATH)
 
-WINHOME='/c/Users/brianpeiris'
-alias ~~='cd $WINHOME'
+adhoc=$winhome/.adhoc_zshrc
+alias ea='vim $adhoc'
+alias ec='vim ~/dotfiles/.bp_zshrc'
+alias rc='source ~/dotfiles/.bp_zshrc'
+
+alias ~~='cd $winhome'
 
 function start_ssh_agent {
     if [ -z "$SSH_AGENT_PID" ]; then
@@ -27,19 +33,20 @@ function run_smooth() {
         if [[ "$output" != "$oldoutput" ]] 
         then
             clear
+            tput cup 2 0
             echo -E "\n$output"
             oldoutput="$output"
         fi
         tput cup 0 0
         echo $(date)
-        sleep 1
+        sleep $2
     }
 }
 alias rs=run_smooth
 
 function adb_remote() {
-	adb tcpip 5555
-	adb connect 192.168.1.6
+    adb tcpip 5555
+    adb connect 192.168.1.6
 }
 alias adbr=adb_remote
 alias adbi='adb install -r'
@@ -47,6 +54,14 @@ alias adbd='adb disconnect'
 alias adbl='adb devices'
 
 alias push='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
-alias ip='ipconfig | grep -i "adapter\|ipv4"'
+alias code='cd $winhome/Code'
 
-[ -s ~/.adhoc_zshrc ] && source ~/.adhoc_zshrc
+alias notes='tmux rename-window notes; vim $winhome/Documents/notes.txt'
+alias ip='ipconfig | grep -i "mainline\|adapter\|ipv4 address"'
+
+function github_clone {
+    git clone git@github.com:$1
+}
+alias ghcl=github_clone
+
+[ -s $adhoc ] && source $adhoc

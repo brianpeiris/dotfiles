@@ -7,9 +7,9 @@
 	trustctime = false
 	editor = vim
 	filemode = false
-[diff]
-	tool = bc3
-[difftool]
-	prompt = false
-[difftool "bc3"]
-	cmd = "/c/Program\\ Files/Beyond\\ Compare\\ 4/bcomp.exe" "$(cygpath -w $LOCAL)" "$REMOTE"
+[color]
+	ui = true
+[credential]
+	helper = cache --timeout=3600
+[merge]
+	tool = vimdiff
