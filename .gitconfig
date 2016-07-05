@@ -4,7 +4,6 @@
 [push]
 	default = simple
 [core]
-	# autocrlf = true
 	trustctime = false
 	editor = vim
 	filemode = false

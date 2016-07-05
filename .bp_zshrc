@@ -9,7 +9,6 @@ alias rc='source ~/.bp_zshrc'
 
 WINHOME='/c/Users/brianpeiris'
 alias ~~='cd $WINHOME'
-~~
 
 function start_ssh_agent {
     if [ -z "$SSH_AGENT_PID" ]; then
@@ -46,5 +45,8 @@ alias adbr=adb_remote
 alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
+
+alias push='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias ip='ipconfig | grep -i "adapter\|ipv4"'
 
 [ -s ~/.adhoc_zshrc ] && source ~/.adhoc_zshrc
