@@ -168,3 +168,5 @@ command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 noremap <C-S> :update<CR>
 inoremap <C-S> <C-O>:update<CR>
 set clipboard=unnamed
+
+set guifont=Consolas\ 8
