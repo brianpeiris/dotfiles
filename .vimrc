@@ -29,6 +29,9 @@ Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
+Plugin 'salomvary/vim-eslint-compiler'
+
+Plugin 'sirtaj/vim-openscad'
 
 " Plugin 'klen/python-mode'
 " Plugin 'fisadev/vim-isort'
@@ -57,7 +60,7 @@ set directory=$TEMP//,~/.tmp//.
 set backupdir=$TEMP//,~/.tmp//.
 set undodir=$TEMP//,~/.tmp//.
 
-set statusline=%f\ %m\ %#warningmsg#\ %{SyntasticStatuslineFlag()}\ %*\ %l/%L-%c%V
+set statusline=%f\ %m\ %#warningmsg#\ %*\ %l/%L-%c%V
 
 " Delete trailing spaces on write.
 " autocmd BufWritePre * :%s/\s\+$//e
@@ -152,6 +155,7 @@ let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = '/c/Users/brianpeiris/AppData/Roaming/npm/eslint'
 
 set encoding=utf-8
 
@@ -160,6 +164,8 @@ filetype plugin on
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$"']
 
 set nowrap
+set autoindent
+set smartindent
 
 let g:sparkupNextMapping = '<c-d>'
 

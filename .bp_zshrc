@@ -53,6 +53,7 @@ alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
 
+alias push='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias code='cd $winhome/Code'
 
 alias notes='tmux rename-window notes; vim $winhome/Documents/notes.txt'
