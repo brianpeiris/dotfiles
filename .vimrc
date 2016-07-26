@@ -105,6 +105,7 @@ vnoremap <silent> # :<C-U>
 
 let g:airline_section_b='%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}'
 let g:airline_section_x=''
+let g:airline_powerline_fonts=1
 
 " Show window numbers in status line
 function! WindowNumber()
@@ -119,8 +120,6 @@ while i <= 20
     execute 'nnoremap <Leader><Leader>' . i . ' :' . i . 'wincmd w<CR>'
     let i = i + 1
 endwhile
-
-let g:NERDTreeDirArrows=0
 
 map <Leader>s <esc>:wa<CR>
 imap <Leader>s <esc>:wa<CR>
@@ -176,3 +175,6 @@ inoremap <C-S> <C-O>:update<CR>
 set clipboard=unnamed
 
 set guifont=Consolas\ 8
+
+" Strip trailing spaces on save
+autocmd BufWritePre * :%s/\s\+$//e
