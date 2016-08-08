@@ -30,7 +30,7 @@ function run_smooth() {
     oldoutput=""
     while (true) {
         output=$(eval $command)
-        if [[ "$output" != "$oldoutput" ]] 
+        if [[ "$output" != "$oldoutput" ]]
         then
             clear
             tput cup 2 0
@@ -53,7 +53,10 @@ alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
 
+alias ginit='git init && git add . && git commit -m "initial commit"'
 alias push='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias pull='git pull'
+alias gpm='git pull origin master'
 alias code='cd $winhome/Code'
 
 alias notes='tmux rename-window notes; vim $winhome/Documents/notes.txt'
