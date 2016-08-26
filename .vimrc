@@ -154,7 +154,14 @@ let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = '/c/Users/brianpeiris/AppData/Roaming/npm/eslint'
+
+let appdata=$APPDATA
+let appdata=system('cygpath ' . shellescape(appdata))
+let appdata=substitute(appdata, "\n", "", "g")
+
+let g:syntastic_javascript_eslint_exec = appdata . '/npm/eslint'
+echo g:syntastic_javascript_eslint_exec
+
 
 set encoding=utf-8
 
@@ -178,3 +185,6 @@ set guifont=Consolas\ 8
 
 " Strip trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Use a backup copy instead of renaming files
+set backupcopy=yes
