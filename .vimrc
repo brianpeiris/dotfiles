@@ -160,7 +160,6 @@ let appdata=system('cygpath ' . shellescape(appdata))
 let appdata=substitute(appdata, "\n", "", "g")
 
 let g:syntastic_javascript_eslint_exec = appdata . '/npm/eslint'
-echo g:syntastic_javascript_eslint_exec
 
 
 set encoding=utf-8
