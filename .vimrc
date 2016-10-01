@@ -154,12 +154,13 @@ let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_checkers = ['eslint']
 
 let appdata=$APPDATA
 let appdata=system('cygpath ' . shellescape(appdata))
 let appdata=substitute(appdata, "\n", "", "g")
 
-let g:syntastic_javascript_eslint_exec = appdata . '/npm/eslint'
+let g:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 
 set encoding=utf-8
