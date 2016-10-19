@@ -7,7 +7,7 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-winhome=$(cygpath $HOMEPATH)
+winhome=$(cygpath $USERPROFILE)
 
 adhoc=$winhome/.adhoc_zshrc
 alias ea='vim $adhoc'
@@ -52,6 +52,19 @@ alias adbr=adb_remote
 alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
+alias awak='adb shell input keyevent 26'
+alias aip='adb shell ifconfig | grep "inet addr" | grep -v 127'
+alias atemp='adb shell "while true; do cat /sys/devices/virtual/thermal/thermal_zone0/temp; sleep 1; done"'
+alias abat='adb shell "while true; do dumpsys battery | grep level | cut -d\" \" -f4; sleep 1; done"'
+function acpu {
+	while true; do
+		adb shell 'top -m 1 -n 1 | grep User | grep User | head -1 | cut -d" " -f2 | cut -d% -f1';
+	done
+}
+
+function plot {
+	feedgnuplot --stream --terminal "dumb 160,40" --xlen 160 --unset grid --title $1 --ymin $2 --ymax $3
+}
 
 alias ginit='git init && git add . && git commit -m "initial commit"'
 alias push='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
@@ -66,5 +79,25 @@ function github_clone {
     git clone git@github.com:$1
 }
 alias ghcl=github_clone
+
+function _find_refs() {
+    echo "Finding matches for script $1 ..."
+    local guid="$(grep guid "$line" | sed 's/^.* //')"
+    grep -R "$guid" Assets | grep -v "$1"
+    echo ""
+}
+function find_refs() {
+    find Assets -iname "*$1*.cs.meta" | while read line; do
+        _find_refs "$line"
+    done
+}
+
+function mcd() {
+    mkdir -p $1
+    cd $1
+}
+
+PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
+
 
 [ -s $adhoc ] && source $adhoc

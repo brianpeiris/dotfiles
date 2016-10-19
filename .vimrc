@@ -24,6 +24,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
 
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -156,12 +157,14 @@ let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_checkers = ['eslint']
 
 let appdata=$APPDATA
 let appdata=system('cygpath ' . shellescape(appdata))
 let appdata=substitute(appdata, "\n", "", "g")
 
-let g:syntastic_javascript_eslint_exec = appdata . '/npm/eslint'
+let g:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
+let g:syntastic_html_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 
 set encoding=utf-8
@@ -189,3 +192,5 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Use a backup copy instead of renaming files
 set backupcopy=yes
+
+hi! def link jsonKeyword Identifier
