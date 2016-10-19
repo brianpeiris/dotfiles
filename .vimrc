@@ -138,6 +138,8 @@ command! -nargs=+ Agl Ag --ignore-dir=.sass-cache --ignore-dir=_generated_media 
 " Diff the unsaved changes in a file with the contents on disk
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
+command! Budo Dispatch budo
+
 set relativenumber
 set visualbell
 let g:pymode_rope_complete_on_dot=0
