@@ -141,6 +141,8 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 
 command! Budo Dispatch budo
 
+command! Merge /[<=>]\{7}
+
 set relativenumber
 set visualbell
 let g:pymode_rope_complete_on_dot=0
