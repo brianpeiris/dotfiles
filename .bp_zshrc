@@ -44,16 +44,20 @@ function run_smooth() {
 }
 alias rs=run_smooth
 
+function android_ip() {
+    adb shell ifconfig | grep "inet addr" | grep -v 127 | cut -d":" -f2 | cut -d" " -f1
+}
+alias aip=android_ip
 function adb_remote() {
+    ip=$(android_ip)
     adb tcpip 5555
-    adb connect 192.168.1.6
+    adb connect $ip
 }
 alias adbr=adb_remote
 alias adbi='adb install -r'
 alias adbd='adb disconnect'
 alias adbl='adb devices'
 alias awak='adb shell input keyevent 26'
-alias aip='adb shell ifconfig | grep "inet addr" | grep -v 127'
 alias atemp='adb shell "while true; do cat /sys/devices/virtual/thermal/thermal_zone0/temp; sleep 1; done"'
 alias abat='adb shell "while true; do dumpsys battery | grep level | cut -d\" \" -f4; sleep 1; done"'
 function acpu {
