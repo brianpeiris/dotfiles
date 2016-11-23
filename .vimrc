@@ -77,9 +77,6 @@ augroup filetypedetect
     autocmd BufNew,BufNewFile,BufRead *.md :set filetype=markdown
 augroup END
 
-let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_working_path_mode=0
-
 set fdm=indent
 set foldignore=
 set foldcolumn=2
@@ -143,6 +140,8 @@ command! Budo Dispatch budo
 
 command! Merge /[<=>]\{7}
 
+command! -nargs=+ Agc Ag --csharp <args>
+
 set relativenumber
 set visualbell
 let g:pymode_rope_complete_on_dot=0
@@ -174,6 +173,9 @@ set encoding=utf-8
 filetype plugin on
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$"']
+let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_mruf_case_sensitive=0
 
 set nowrap
 set autoindent
