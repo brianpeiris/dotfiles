@@ -29,7 +29,7 @@ function run_smooth() {
     command=$1
     oldoutput=""
     while (true) {
-        output=$(eval $command)
+        output=$(eval $command 2>&1)
         if [[ "$output" != "$oldoutput" ]]
         then
             clear

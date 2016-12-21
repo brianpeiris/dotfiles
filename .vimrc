@@ -33,6 +33,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'salomvary/vim-eslint-compiler'
 
 Plugin 'sirtaj/vim-openscad'
+Plugin 'PProvost/vim-ps1'
 
 " Plugin 'klen/python-mode'
 " Plugin 'fisadev/vim-isort'
@@ -151,7 +152,6 @@ command! Directory e %:h
 map <Leader><Leader>d <esc>:Directory<CR>
 imap <Leader><Leader>d <esc>:Directory<CR>
 
-set guifont=Ubuntu\ Mono\ 8
 highlight Search term=reverse cterm=reverse gui=reverse
 
 let g:NERDTreeIgnore=['\~$', '\.meta$']
@@ -189,7 +189,7 @@ noremap <C-S> :update<CR>
 inoremap <C-S> <C-O>:update<CR>
 set clipboard=unnamed
 
-set guifont=Consolas\ 8
+set guifont=Consolas:h9
 
 " Strip trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
