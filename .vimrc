@@ -64,9 +64,6 @@ set undodir=$TEMP//,~/.tmp//.
 
 set statusline=%f\ %m\ %#warningmsg#\ %*\ %l/%L-%c%V
 
-" Delete trailing spaces on write.
-" autocmd BufWritePre * :%s/\s\+$//e
-
 " Fix terminal weirdness
 set t_Co=256
 set t_ut=
