@@ -189,7 +189,7 @@ set clipboard=unnamed
 set guifont=Consolas:h9
 
 " Strip trailing spaces on save
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 " Use a backup copy instead of renaming files
 set backupcopy=yes
