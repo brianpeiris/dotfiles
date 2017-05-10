@@ -189,7 +189,7 @@ noremap <C-S> :update<CR>
 inoremap <C-S> <C-O>:update<CR>
 set clipboard=unnamed
 
-set guifont=Consolas:h9
+set guifont=Ubuntu\ Mono:h9
 
 " Strip trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e

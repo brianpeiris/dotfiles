@@ -1,3 +1,5 @@
+script_path=$(dirname $(readlink -f $0))
+
 # Install tmux
 pact install tmux
 pact install the_silver_searcher
@@ -12,7 +14,6 @@ if [ ! -e ~/.vim/bundle/Vundle.vim ]; then
 fi
 
 # Link vimrc
-script_path=$(dirname $0)
 if [ ! -e ~/.vimrc ]; then
   ln -s $script_path/.vimrc ~/.vimrc
 fi
