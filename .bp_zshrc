@@ -71,7 +71,8 @@ function plot {
 }
 
 alias ginit='git init && git add . && git commit -m "initial commit"'
-alias push='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gname='git rev-parse --abbrev-ref HEAD'
+alias push='git push -u origin $(gname)'
 alias pull='git pull'
 alias gpm='git pull origin master'
 alias code='cd $winhome/Code'

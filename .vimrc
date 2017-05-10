@@ -31,6 +31,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
 Plugin 'salomvary/vim-eslint-compiler'
+Plugin 'editorconfig/editorconfig-vim'
 
 Plugin 'sirtaj/vim-openscad'
 Plugin 'PProvost/vim-ps1'
@@ -63,9 +64,6 @@ set backupdir=$TEMP//,~/.tmp//.
 set undodir=$TEMP//,~/.tmp//.
 
 set statusline=%f\ %m\ %#warningmsg#\ %*\ %l/%L-%c%V
-
-" Delete trailing spaces on write.
-" autocmd BufWritePre * :%s/\s\+$//e
 
 " Fix terminal weirdness
 set t_Co=256
@@ -125,7 +123,7 @@ imap <Leader>s <esc>:wa<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
-set wildignore=*.mat,*.meta,*.pyc,*.prefab,*.asset
+" set wildignore=*.mat,*.meta,*.pyc,*.prefab,*.asset
 
 let g:syntastic_auto_loc_list=1
 " autocmd CursorHold *.py PymodeLint
@@ -141,7 +139,7 @@ command! Budo Dispatch budo
 
 command! Merge /[<=>]\{7}
 
-command! -nargs=+ Agc Ag --csharp <args>
+command! -nargs=+ Agc Ag --ignore=dir='Android/TestShim' --csharp <args>
 
 set relativenumber
 set visualbell
@@ -172,10 +170,10 @@ set encoding=utf-8
 
 filetype plugin on
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$"']
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$" | grep -v "TestShim"']
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_working_path_mode=0
-let g:ctrlp_mruf_case_sensitive=0
+" let g:ctrlp_mruf_case_sensitive=0
 
 set nowrap
 set autoindent
@@ -192,9 +190,14 @@ set clipboard=unnamed
 set guifont=Ubuntu\ Mono:h9
 
 " Strip trailing spaces on save
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 " Use a backup copy instead of renaming files
 set backupcopy=yes
 
 hi! def link jsonKeyword Identifier
+
+au FileType qf call AdjustWindowHeight(3, 100)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
