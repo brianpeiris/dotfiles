@@ -36,6 +36,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'PProvost/vim-ps1'
 
+Plugin 'terryma/vim-multiple-cursors'
+
 " Plugin 'klen/python-mode'
 " Plugin 'fisadev/vim-isort'
 
@@ -139,7 +141,7 @@ command! Budo Dispatch budo
 
 command! Merge /[<=>]\{7}
 
-command! -nargs=+ Agc Ag --ignore=dir='Android/TestShim' --csharp <args>
+command! -nargs=+ Agc Ag --ignore-dir='Android/TestShim' --csharp <args>
 
 set relativenumber
 set visualbell
@@ -173,6 +175,7 @@ filetype plugin on
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$" | grep -v "TestShim"']
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_working_path_mode=0
+let g:ctrlp_max_files=0
 " let g:ctrlp_mruf_case_sensitive=0
 
 set nowrap
@@ -190,7 +193,7 @@ set clipboard=unnamed
 set guifont=Ubuntu\ Mono:h9
 
 " Strip trailing spaces on save
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Use a backup copy instead of renaming files
 set backupcopy=yes

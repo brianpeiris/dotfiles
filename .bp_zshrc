@@ -72,13 +72,24 @@ function plot {
 
 alias ginit='git init && git add . && git commit -m "initial commit"'
 alias gname='git rev-parse --abbrev-ref HEAD'
-alias push='git push -u origin $(gname)'
+alias push='git push origin $(gname)'
+alias pusht='git push -u origin $(gname)'
 alias pull='git pull'
 alias gpm='git pull origin master'
+alias gpm='git pull origin master'
 alias code='cd $winhome/Code'
+function gcm {
+    git commit -m "$*"
+}
+function gcam {
+    git commit -am "$*"
+}
 
 alias notes='tmux rename-window notes; vim $winhome/Documents/notes.txt'
 alias ip='ipconfig | grep -i "mainline\|adapter\|ipv4 address"'
+
+alias rg='rg -S --path-separator "/"'
+alias rgc='rg --type cs'
 
 function github_clone {
     git clone git@github.com:$1
@@ -92,7 +103,7 @@ function _find_refs() {
     echo ""
 }
 function find_refs() {
-    find Assets -iname "*$1*.cs.meta" | while read line; do
+    find Assets -iname "*$1*.meta" | while read line; do
         _find_refs "$line"
     done
 }
@@ -106,3 +117,6 @@ PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
 
 
 [ -s $adhoc ] && source $adhoc
+
+unalias gcm
+
