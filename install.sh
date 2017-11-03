@@ -1,11 +1,22 @@
+set -e
+
 script_path=$(dirname $(readlink -f $0))
 
 # Install tmux
-pact install tmux
-pact install the_silver_searcher
+sudo apt install tmux
+
+if [[ ! -e /usr/local/bin/rg ]]; then
+  ripv=0.7.1
+  rip=ripgrep-$ripv-x86_64-unknown-linux-musl
+  wget https://github.com/BurntSushi/ripgrep/releases/download/$ripv/$rip.tar.gz
+  mkdir ~/.bin || true
+  tar xf $rip.tar.gz -C ~/.bin
+  sudo ln -s "$(realpath ~)/.bin/$rip/rg" /usr/local/bin/rg
+  rm $rip.tar.gz
+fi
 
 # Install scm_breeze
-git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
+git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze || true
 ~/.scm_breeze/install.sh
 
 # Install Vim Vundle
