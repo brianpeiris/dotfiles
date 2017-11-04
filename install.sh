@@ -1,11 +1,14 @@
 script_path=$(dirname $(readlink -f $0))
 
-# Install tmux
-pact install tmux
-pact install the_silver_searcher
+# Make .tmp dir for vim
+if [ ! -e ~/.tmp ]; then
+  mkdir ~/.tmp
+fi
 
 # Install scm_breeze
-git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
+if [ ! -e ~/.scm_breeze ]; then
+  git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
+fi
 ~/.scm_breeze/install.sh
 
 # Install Vim Vundle
@@ -19,7 +22,7 @@ if [ ! -e ~/.vimrc ]; then
 fi
 
 # Install Vundle packages
-vim +PluginInstall +qa > /dev/null
+vim +PluginInstall +qa
 
 # Link tmux.conf
 if [ ! -e ~/.tmux.conf ]; then

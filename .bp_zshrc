@@ -7,14 +7,15 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-winhome=$(cygpath $USERPROFILE)
+winuser="$(cmd /c 'echo %username%')"
+winhome="/mnt/c/Users/$winuser"
 
-adhoc=$winhome/.adhoc_zshrc
+adhoc="$winhome/.adhoc_zshrc"
 alias ea='vim $adhoc'
 alias ec='vim ~/dotfiles/.bp_zshrc'
 alias rc='source ~/dotfiles/.bp_zshrc'
 
-alias ~~='cd $winhome'
+alias ~~='cd "$winhome"'
 
 function start_ssh_agent {
     if [ -z "$SSH_AGENT_PID" ]; then
@@ -77,7 +78,7 @@ alias pusht='git push -u origin $(gname)'
 alias pull='git pull'
 alias gpm='git pull origin master'
 alias gpm='git pull origin master'
-alias code='cd $winhome/Code'
+alias code='cd "$winhome/Code"'
 function gcm {
     git commit -m "$*"
 }
@@ -85,14 +86,14 @@ function gcam {
     git commit -am "$*"
 }
 
-alias notes='tmux rename-window notes; vim $winhome/Documents/notes.txt'
-alias ip='ipconfig | grep -i "mainline\|adapter\|ipv4 address"'
+alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
+alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
 
 alias rg='rg -S --path-separator "/"'
 alias rgc='rg --type cs'
 
 function github_clone {
-    git clone git@github.com:$1
+    git clone git@github.com:$1 $1
 }
 alias ghcl=github_clone
 
@@ -113,10 +114,23 @@ function mcd() {
     cd $1
 }
 
+function vid() {
+    echo "$(vagrant.exe ssh-config | grep -i identityfile | cut -d'"' -f2 | sed 's/C:/\/mnt\/c/')"
+}
+
+function vsh() {
+    identity=$(vid)
+    ssh -p 2222 -i $identity ubuntu@localhost
+}
+
+function vcp() {
+    identity=$(vid)
+    scp -i $identity -P 2222 -- $1 $2
+}
+
 PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
 
 
 [ -s $adhoc ] && source $adhoc
 
-unalias gcm
-
+unalias gcm > /dev/null 2>&1

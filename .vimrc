@@ -43,7 +43,7 @@ Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 filetype plugin on
@@ -204,3 +204,7 @@ au FileType qf call AdjustWindowHeight(3, 100)
 function! AdjustWindowHeight(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
+
+let g:ackprg = 'rg --vimgrep'
+
+command! -nargs=+ Rg Ack <args>
