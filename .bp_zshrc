@@ -7,7 +7,7 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-winuser="$(cmd /c 'echo %username%')"
+winuser="$(cmd.exe /c 'echo %username%')"
 winhome="/mnt/c/Users/$winuser"
 
 adhoc="$winhome/.adhoc_zshrc"
