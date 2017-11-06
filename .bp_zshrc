@@ -7,7 +7,7 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-winuser="$(cmd.exe /c 'echo %username%')"
+winuser="$(cmd.exe /c 'echo %username%' | tr -d '\r')"
 winhome="/mnt/c/Users/$winuser"
 
 adhoc="$winhome/.adhoc_zshrc"
@@ -130,6 +130,7 @@ function vcp() {
 
 PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
 
+LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=34:ow=34'
 
 [ -s $adhoc ] && source $adhoc
 
