@@ -93,7 +93,9 @@ alias rg='rg -S --path-separator "/"'
 alias rgc='rg --type cs'
 
 function github_clone {
-    git clone git@github.com:$1 $1
+    repo=$(echo $1 | sed 's/.\+.com.//' | sed 's/\..\+$//')
+    git clone git@github.com:$repo $repo
+    cd $repo
 }
 alias ghcl=github_clone
 
@@ -118,6 +120,8 @@ function vid() {
     echo "$(vagrant.exe ssh-config | grep -i identityfile | cut -d'"' -f2 | sed 's/C:/\/mnt\/c/')"
 }
 
+alias v=vagrant.exe
+
 function vsh() {
     identity=$(vid)
     ssh -p 2222 -i $identity ubuntu@localhost
@@ -135,3 +139,5 @@ LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=
 [ -s $adhoc ] && source $adhoc
 
 unalias gcm > /dev/null 2>&1
+
+export PATH="$HOME/.local/bin:$PATH"

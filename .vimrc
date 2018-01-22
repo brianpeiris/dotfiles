@@ -19,7 +19,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
