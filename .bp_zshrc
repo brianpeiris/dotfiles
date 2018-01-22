@@ -130,7 +130,6 @@ function vcp() {
 
 PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
 
-
 [ -e $adhoc ] && source $adhoc
 
 unalias gcm > /dev/null 2>&1
