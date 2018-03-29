@@ -26,7 +26,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
-Plugin 'mxw/vim-jsx'
 
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
