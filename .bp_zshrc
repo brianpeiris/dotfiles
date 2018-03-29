@@ -27,20 +27,20 @@ alias sa=start_ssh_agent
 start_ssh_agent
 
 function run_smooth() {
-    command=$1
     oldoutput=""
     while (true) {
-        output=$(eval $command 2>&1)
+        run="unbuffer $* 2>&1"
+        output=$(eval $run)
         if [[ "$output" != "$oldoutput" ]]
         then
             clear
             tput cup 2 0
-            echo -E "\n$output"
+            echo -E "$output"
             oldoutput="$output"
         fi
         tput cup 0 0
         echo $(date)
-        sleep $2
+        sleep 1
     }
 }
 alias rs=run_smooth
