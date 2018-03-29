@@ -24,6 +24,7 @@ Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'mxw/vim-jsx'
 
@@ -74,6 +75,7 @@ set t_ut=
 
 colorscheme Monokai
 autocmd ColorScheme * highlight Search cterm=reverse
+highlight Search term=reverse cterm=reverse gui=reverse
 
 augroup filetypedetect
     autocmd BufNew,BufNewFile,BufRead *.md :set filetype=markdown
@@ -126,58 +128,31 @@ imap <Leader>s <esc>:wa<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
-" set wildignore=*.mat,*.meta,*.pyc,*.prefab,*.asset
-
-let g:syntastic_auto_loc_list=1
-" autocmd CursorHold *.py PymodeLint
-" autocmd CursorHoldI *.py PymodeLint
 set updatetime=500
-
-command! -nargs=+ Agl Ag --ignore-dir=.sass-cache --ignore-dir=_generated_media --ignore-dir=.ropeproject --ignore-dir=bower_components --ignore-file=is:.tags --ignore-file=is:tags <args>
 
 " Diff the unsaved changes in a file with the contents on disk
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-command! Budo Dispatch budo
-
 command! Merge /[<=>]\{7}
-
-command! -nargs=+ Agc Ag --ignore-dir='Android/TestShim' --csharp <args>
 
 set relativenumber
 set visualbell
-let g:pymode_rope_complete_on_dot=0
 
 " Quick access to NERDTree for the current file's directory
 command! Directory e %:h
 map <Leader><Leader>d <esc>:Directory<CR>
 imap <Leader><Leader>d <esc>:Directory<CR>
 
-highlight Search term=reverse cterm=reverse gui=reverse
-
 let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
-let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_html_checkers = ['eslint']
-
-let appdata=$APPDATA
-let appdata=system('cygpath ' . shellescape(appdata))
-let appdata=substitute(appdata, "\n", "", "g")
-
-let g:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
-let g:syntastic_html_eslint_exec = './node_modules/eslint/bin/eslint.js'
-
 
 set encoding=utf-8
 
 filetype plugin on
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard | grep -v "\.\(meta\|prefab\|asset\)$" | grep -v "TestShim"']
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_max_files=0
-" let g:ctrlp_mruf_case_sensitive=0
 
 set nowrap
 set autoindent
@@ -209,3 +184,6 @@ endfunction
 let g:ackprg = 'rg --vimgrep'
 
 command! -nargs=+ Rg Ack <args>
+
+let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
+let g:ale_javascript_standard_use_global = 1
