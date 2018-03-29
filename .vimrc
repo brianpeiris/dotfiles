@@ -1,4 +1,6 @@
-" Vundle init /
+"  --
+"  -- Vundle Init
+"  --
 set nocompatible
 filetype off
 
@@ -6,6 +8,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/vundle'
+
+Plugin 'flazz/vim-colorschemes'
 
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
@@ -22,25 +26,21 @@ Plugin 'honza/vim-snippets'
 Plugin 'w0rp/ale'
 
 Plugin 'tpope/vim-fugitive'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'elzr/vim-json'
+Plugin 'airblade/vim-gitgutter'
 
 Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
 Plugin 'salomvary/vim-eslint-compiler'
 Plugin 'editorconfig/editorconfig-vim'
 
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'elzr/vim-json'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'PProvost/vim-ps1'
 
 Plugin 'terryma/vim-multiple-cursors'
-
-" Plugin 'klen/python-mode'
-" Plugin 'fisadev/vim-isort'
 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -48,12 +48,17 @@ Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 filetype plugin on
-" / Vundle init
+
+" --
+" -- Vim Settings
+" --
 
 set rtp+=~/dotfiles/snippets
 
 set hlsearch
 set number
+set relativenumber
+
 set noexpandtab
 set ts=4
 set sts=4
@@ -66,8 +71,6 @@ set directory=$TEMP//,~/.tmp//.
 set backupdir=$TEMP//,~/.tmp//.
 set undodir=$TEMP//,~/.tmp//.
 
-set statusline=%f\ %m\ %#warningmsg#\ %*\ %l/%L-%c%V
-
 " Fix terminal weirdness
 set t_Co=256
 set t_ut=
@@ -75,6 +78,8 @@ set t_ut=
 colorscheme Monokai
 autocmd ColorScheme * highlight Search cterm=reverse
 highlight Search term=reverse cterm=reverse gui=reverse
+
+hi! def link jsonKeyword Identifier
 
 augroup filetypedetect
     autocmd BufNew,BufNewFile,BufRead *.md :set filetype=markdown
@@ -92,6 +97,60 @@ set cursorcolumn
 set exrc
 set secure
 
+set updatetime=500
+
+set visualbell
+
+set statusline=%f\ %m\ %#warningmsg#\ %*\ %l/%L-%c%V
+
+set encoding=utf-8
+
+set nowrap
+set autoindent
+set smartindent
+
+set clipboard=unnamed
+
+set guifont=Ubuntu\ Mono:h9
+
+" Use a backup copy instead of renaming files
+set backupcopy=yes
+
+" --
+" -- Commands
+" --
+
+" Diff the unsaved changes in a file with the contents on disk
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+command! Merge /[<=>]\{7}
+
+" Quick access to NERDTree for the current file's directory
+command! Directory e %:h
+map <Leader><Leader>d <esc>:Directory<CR>
+imap <Leader><Leader>d <esc>:Directory<CR>
+
+command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
+
+command! -nargs=+ Rg Ack <args>
+
+" Strip trailing spaces on save
+" autocmd BufWritePre * :%s/\s\+$//e
+
+au FileType qf call AdjustWindowHeight(3, 100)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+" --
+" -- Mappings
+" --
+
+map <Leader>s <esc>:wa<CR>
+imap <Leader>s <esc>:wa<CR>
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>
+
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -103,6 +162,13 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+noremap <C-S> :update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" --
+" -- Plugin Settings
+" --
 
 let g:airline_section_b='%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}'
 let g:airline_section_x=''
@@ -122,67 +188,16 @@ while i <= 20
     let i = i + 1
 endwhile
 
-map <Leader>s <esc>:wa<CR>
-imap <Leader>s <esc>:wa<CR>
-map <C-s> <esc>:w<CR>
-imap <C-s> <esc>:w<CR>
-
-set updatetime=500
-
-" Diff the unsaved changes in a file with the contents on disk
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-command! Merge /[<=>]\{7}
-
-set relativenumber
-set visualbell
-
-" Quick access to NERDTree for the current file's directory
-command! Directory e %:h
-map <Leader><Leader>d <esc>:Directory<CR>
-imap <Leader><Leader>d <esc>:Directory<CR>
-
 let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
-
-set encoding=utf-8
-
-filetype plugin on
 
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_max_files=0
 
-set nowrap
-set autoindent
-set smartindent
-
 let g:sparkupNextMapping = '<c-d>'
 
-command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
-
-noremap <C-S> :update<CR>
-inoremap <C-S> <C-O>:update<CR>
-set clipboard=unnamed
-
-set guifont=Ubuntu\ Mono:h9
-
-" Strip trailing spaces on save
-" autocmd BufWritePre * :%s/\s\+$//e
-
-" Use a backup copy instead of renaming files
-set backupcopy=yes
-
-hi! def link jsonKeyword Identifier
-
-au FileType qf call AdjustWindowHeight(3, 100)
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
-
 let g:ackprg = 'rg --vimgrep'
-
-command! -nargs=+ Rg Ack <args>
 
 let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
