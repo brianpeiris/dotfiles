@@ -126,6 +126,8 @@ function vid() {
 
 alias v=vagrant.exe
 
+alias ys='yarn start --no-open'
+
 function vsh() {
     identity=$(vid)
     ssh -p 2222 -i $identity ubuntu@localhost
