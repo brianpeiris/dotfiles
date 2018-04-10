@@ -44,6 +44,11 @@ if [ ! -e ~/.tmp ]; then
   mkdir ~/.tmp
 fi
 
+banner "install ruby"
+if ! which ruby; then
+  sudo apt install -y ruby
+fi
+
 banner "install scm breeze"
 if [ ! -e ~/.scm_breeze ]; then
   git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
