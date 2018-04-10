@@ -28,7 +28,7 @@ Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
 Plugin 'salomvary/vim-eslint-compiler'
@@ -101,8 +101,6 @@ set updatetime=500
 
 set visualbell
 
-set statusline=%f\ %m\ %#warningmsg#\ %*\ %l/%L-%c%V
-
 set encoding=utf-8
 
 set nowrap
@@ -170,16 +168,21 @@ inoremap <C-S> <C-O>:update<CR>
 " -- Plugin Settings
 " --
 
-let g:airline_section_b='%{airline#util#wrap(airline#extensions#hunks#get_hunks(),0)}'
-let g:airline_section_x=''
-let g:airline_powerline_fonts=1
-
-" Show window numbers in status line
-function! WindowNumber()
-    let str=tabpagewinnr(tabpagenr())
-    return str
-endfunction
-let g:airline_section_y='win:%{WindowNumber()}'
+let g:lightline = { 
+\ 'active': { 
+\   'left': [ ['mode', 'paste'], ['fugitivehead'], ['readonly', 'filename', 'modified', 'hunks'] ],
+\   'right': [ ['lineinfo', 'winnum'], ['percent'], ['fileformat', 'fileencoding', 'filetype'] ] 
+\ },
+\ 'inactive': { 
+\   'left': [ ['filename' ] ],
+\   'right': [ ['lineinfo', 'winnum'], ['percent'] ] 
+\ },
+\ 'component': {
+\   'fugitivehead': '%{fugitive#head()}',
+\   'hunks': '%{join(GitGutterGetHunkSummary(), " ")}',
+\   'winnum': '%{tabpagewinnr(tabpagenr())}'
+\ }
+\}
 
 " Switch to a window number with \\<num>
 let i = 1
