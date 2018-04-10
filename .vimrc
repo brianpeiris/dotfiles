@@ -194,6 +194,7 @@ let g:NERDSpaceDelims=1
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_max_files=0
+let g:ctrlp_custom_ignore = {'dir': '\.git$\|node_modules'}
 
 let g:sparkupNextMapping = '<c-d>'
 
@@ -201,3 +202,6 @@ let g:ackprg = 'rg --vimgrep'
 
 let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
+let g:ale_linters = {'javascript': ['eslint', 'semistandard']}
+let g:ale_html_htmlhint_executable = 'scripts/lint-html.js'
+let g:ale_html_htmlhint_use_global = 1

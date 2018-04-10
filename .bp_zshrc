@@ -89,6 +89,7 @@ function pushu {
     remote=$1
     git push -u $remote $(gname)
 }
+alias pusho='pushu origin'
 
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
 alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
@@ -125,6 +126,7 @@ function vid() {
 }
 
 alias v=vagrant.exe
+alias ys='yarn start --no-open'
 
 function vsh() {
     identity=$(vid)
