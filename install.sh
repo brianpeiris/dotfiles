@@ -56,8 +56,10 @@ fi
 ~/.scm_breeze/install.sh
 
 banner "install ripgrep"
-if [ ! -e $(which rg) ]; then
-  sudo snap install rg
+if ! rg; then
+  wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
+  sudo dpkg -i ripgrep_0.8.1_amd64.deb
+  rm ripgrep_0.8.1_amd64.deb
 fi
 
 banner "install vundle"
