@@ -14,7 +14,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 
@@ -31,7 +31,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
-Plugin 'salomvary/vim-eslint-compiler'
 Plugin 'editorconfig/editorconfig-vim'
 
 Plugin 'pangloss/vim-javascript'
@@ -45,6 +44,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'mileszs/ack.vim'
+
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 filetype plugin on
