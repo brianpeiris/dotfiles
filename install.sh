@@ -17,11 +17,14 @@ sudo add-apt-repository -y ppa:jonathonf/vim
 banner "update apt"
 sudo apt update
 
-if [ "$SHELL" == "bash" ]; then
+banner "install curl"
+if ! which curl; then
+  sudo apt install -y curl
+fi
+
+if grep -q bash <<<$SHELL; then
   banner "install zsh"
   sudo apt install -y zsh
-  banner "switching shell"
-  chsh -s $(which zsh)
   banner "installing ohmyzsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
