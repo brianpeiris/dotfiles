@@ -13,9 +13,13 @@ script_path=$(dirname $(readlink -f $0))
 
 banner "add vim ppa"
 sudo add-apt-repository -y ppa:jonathonf/vim
+sudo add-apt-repository -y ppa:git-core/ppa
 
 banner "update apt"
 sudo apt update
+
+banner "install latest git"
+sudo apt install -y git
 
 banner "install curl"
 if ! which curl; then
