@@ -1,33 +1,54 @@
 #!/usr/bin/env bash
 set -e
 
+function banner() {
+  echo ''
+  echo '###################################'
+  echo " $1 "
+  echo '###################################'
+  echo ''
+}
+
 script_path=$(dirname $(readlink -f $0))
 
-# Install tmux
-sudo apt install tmux
+banner "add vim ppa"
+sudo add-apt-repository -y ppa:jonathonf/vim
+
+banner "update apt"
+sudo apt update
+
+if [ "$SHELL" == "bash" ]; then
+  banner "install zsh"
+  sudo apt install -y zsh
+  banner "switching shell"
+  chsh -s $(which zsh)
+  banner "installing ohmyzsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+banner "install vim"
+sudo apt install -y vim
+
+banner "install tmux"
+sudo apt install -y tmux
 
 # Make .tmp dir for vim
 if [ ! -e ~/.tmp ]; then
   mkdir ~/.tmp
 fi
 
-# Install scm_breeze
+banner "install scm breeze"
 if [ ! -e ~/.scm_breeze ]; then
   git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
 fi
 ~/.scm_breeze/install.sh
 
-if [[ ! -e /usr/local/bin/rg ]]; then
-  ripv=0.7.1
-  rip=ripgrep-$ripv-x86_64-unknown-linux-musl
-  wget https://github.com/BurntSushi/ripgrep/releases/download/$ripv/$rip.tar.gz
-  mkdir ~/.bin || true
-  tar xf $rip.tar.gz -C ~/.bin
-  sudo ln -s "$(realpath ~)/.bin/$rip/rg" /usr/local/bin/rg
-  rm $rip.tar.gz
+banner "install ripgrep"
+if [ ! -e $(which rg) ]; then
+  sudo snap install rg
 fi
 
-# Install Vim Vundle
+banner "install vundle"
 if [ ! -e ~/.vim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
@@ -37,7 +58,7 @@ if [ ! -e ~/.vimrc ]; then
   ln -s $script_path/.vimrc ~/.vimrc
 fi
 
-# Install Vundle packages
+banner "install vim plugins"
 vim +PluginInstall +qa
 
 # Link tmux.conf
@@ -45,15 +66,15 @@ if [ ! -e ~/.tmux.conf ]; then
   ln -s $script_path/.tmux.conf ~/.tmux.conf
 fi
 
-rm ~/.gitconfig
+rm ~/.gitconfig || true
 ln -s $script_path/.gitconfig ~/.gitconfig
 
 # Source zshrc
-if ! grep -q bp_zshrc ~/.zshrc; then
+if [ -e ~/.zshrc ] && ! grep -q bp_zshrc ~/.zshrc; then
   echo 'source ~/dotfiles/.bp_zshrc' >> ~/.zshrc
 fi
 
 # Add 'z' plugin
-if ! grep -q 'plugins+=(z)' ~/.zshrc; then
-  sed -i 's/^plugins=.\+/\0\nplugins+=(z)/' ~/.zshrc
+if ! grep -q 'plugins+=' ~/.zshrc; then
+  sed -i 's/^source $ZSH.\+/plugins+=(z git)\n\0/' ~/.zshrc
 fi
