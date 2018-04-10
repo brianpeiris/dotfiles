@@ -10,6 +10,10 @@ bindkey -M viins '^N' history-incremental-search-backward
 winuser="$(cmd.exe /c 'echo %username%' 2>/dev/null | tr -d '\r')"
 winhome="/mnt/c/Users/$winuser"
 
+if [ ! -e $winhome ]; then
+    winhome=$HOME
+fi
+
 adhoc="$winhome/.adhoc_zshrc"
 alias ea='vim $adhoc'
 alias ec='vim ~/dotfiles/.bp_zshrc'

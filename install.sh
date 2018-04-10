@@ -69,7 +69,9 @@ if [ ! -e ~/.tmux.conf ]; then
   ln -s $script_path/.tmux.conf ~/.tmux.conf
 fi
 
-rm ~/.gitconfig || true
+if [ -e ~/.gitconfig ]; then
+  rm ~/.gitconfig
+fi
 ln -s $script_path/.gitconfig ~/.gitconfig
 
 # Source zshrc
