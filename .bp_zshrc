@@ -1,6 +1,8 @@
 # Disable flow control
 stty -ixon
 
+setopt menu_complete
+
 # Vim mode
 bindkey -v
 bindkey -M vicmd '?' history-incremental-search-backward
