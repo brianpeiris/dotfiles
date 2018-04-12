@@ -1,10 +1,12 @@
 "  --
 "  -- Vundle Init
 "  --
+" vint: -ProhibitSetNoCompatible
 set nocompatible
+" vint: +ProhibitSetNoCompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/vundle'
@@ -54,16 +56,16 @@ filetype plugin on
 " -- Vim Settings
 " --
 
-set rtp+=~/dotfiles/snippets
+set runtimepath+=~/dotfiles/snippets
 
 set hlsearch
 set number
 set relativenumber
 
 set noexpandtab
-set ts=4
-set sts=4
-set sw=4
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 set ignorecase
 set smartcase
@@ -77,7 +79,9 @@ set t_Co=256
 set t_ut=
 
 colorscheme Monokai
-autocmd ColorScheme * highlight Search cterm=reverse
+augroup searchhighlight
+  autocmd ColorScheme * highlight Search cterm=reverse
+augroup END
 highlight Search term=reverse cterm=reverse gui=reverse
 
 hi! def link jsonKeyword Identifier
@@ -86,7 +90,12 @@ augroup filetypedetect
     autocmd BufNew,BufNewFile,BufRead *.md :set filetype=markdown
 augroup END
 
-set fdm=indent
+augroup lightlineupdate
+  autocmd User ALELintPre call lightline#update()
+  autocmd User ALELintPost call lightline#update()
+augroup END
+
+set foldmethod=indent
 set foldignore=
 set foldcolumn=2
 set colorcolumn=120
@@ -136,10 +145,12 @@ command! -nargs=+ Rg Ack <args>
 " Strip trailing spaces on save
 " autocmd BufWritePre * :%s/\s\+$//e
 
-au FileType qf call AdjustWindowHeight(3, 100)
 function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+  exe max([min([line('$'), a:maxheight]), a:minheight]) . 'wincmd _'
 endfunction
+augroup quickfixresize
+  autocmd FileType qf call AdjustWindowHeight(3, 100)
+augroup END
 
 " --
 " -- Mappings
@@ -169,27 +180,69 @@ inoremap <C-S> <C-O>:update<CR>
 " -- Plugin Settings
 " --
 
+function ErrorStatus()
+  if ale#linter#Get(&filetype) == []
+    highlight ErrorStatus ctermfg=244 ctermbg=236 
+    return '- '
+  endif
+  let l:currBuffer = bufnr('%')
+  let l:errorCount = ale#statusline#Count(l:currBuffer)['total']
+  let l:linting = ale#engine#IsCheckingBuffer(l:currBuffer)
+  if l:linting == 1
+    highlight ErrorStatus ctermfg=244 ctermbg=236 
+    return " \uf128"
+  endif
+  if l:errorCount == 0
+    highlight ErrorStatus ctermfg=2 ctermbg=236 
+    return " \uf00c"
+  else
+    highlight ErrorStatus ctermfg=236 ctermbg=204 
+    return " \uf00d " . l:errorCount . ' ' 
+  endif
+endfunction
+
+highlight AddStatus ctermfg=2 ctermbg=236
+highlight ChangeStatus ctermfg=3 ctermbg=236
+highlight DeleteStatus ctermfg=1 ctermbg=236
+
+function Modified()
+  if &modified == 1
+    highlight Modified ctermfg=3 ctermbg=236
+    return '+'
+  else
+    highlight Modified ctermfg=245 ctermbg=236
+    return '-'
+  endif
+endfunction
+
 let g:lightline = { 
+\ 'colorscheme': 'jellybeans',
+\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
 \ 'active': { 
-\   'left': [ ['mode', 'paste'], ['fugitivehead'], ['readonly', 'filename', 'modified', 'hunks'] ],
-\   'right': [ ['lineinfo', 'winnum'], ['percent'], ['fileformat', 'fileencoding', 'filetype'] ] 
+\   'left': [ ['mode', 'paste'], ['fugitivehead'], ['readonly', 'relativepath', 'mod', 'hunks', 'errors'] ],
+\   'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', 'winnr'] ] 
 \ },
 \ 'inactive': { 
-\   'left': [ ['filename' ] ],
-\   'right': [ ['lineinfo', 'winnum'], ['percent'] ] 
+\   'left': [ [ 'relativepath', 'mod' ] ],
+\   'right': [ ['lineinfo'], ['percent'], ['winnr'] ] 
 \ },
 \ 'component': {
-\   'fugitivehead': '%{fugitive#head()}',
-\   'hunks': '%{join(GitGutterGetHunkSummary(), " ")}',
-\   'winnum': '%{tabpagewinnr(tabpagenr())}'
+\   'filename': '%f',
+\   'fugitivehead': "\ue725 %{fugitive#head()}",
+\   'mod': '%#Modified#%{Modified()}%#LightlineLeft_normal_2#',
+\   'hunks': '%#AddStatus#%{fugitive#head()!=""?GitGutterGetHunkSummary()[0]." ":""}
+\%#ChangeStatus#%{fugitive#head()!=""?GitGutterGetHunkSummary()[1]." ":"-"}
+\%#DeleteStatus#%{fugitive#head()!=""?GitGutterGetHunkSummary()[2]:""}%#LightlineLeft_normal_2#',
+\   'errors': '%#ErrorStatus#%{ErrorStatus()}%#LightlineLeft_normal_2#',
 \ }
 \}
 
 " Switch to a window number with \\<num>
-let i = 1
-while i <= 20
-    execute 'nnoremap <Leader><Leader>' . i . ' :' . i . 'wincmd w<CR>'
-    let i = i + 1
+let g:WinNum = 1
+while g:WinNum <= 20
+    execute 'nnoremap <Leader><Leader>' . g:WinNum . ' :' . g:WinNum . 'wincmd w<CR>'
+    let g:WinNum = g:WinNum + 1
 endwhile
 
 let g:NERDTreeIgnore=['\~$', '\.meta$']
