@@ -91,11 +91,14 @@ function gcm {
 function gcam {
     git commit -am "$*"
 }
+function pusht {
+    git push -u $1 $(gname)
+}
 function pushr {
-    remote=$1
-    git push $remote $(gname)
+    git push $1 $(gname)
 }
 alias pusho='pushr origin'
+alias pushto='pusht origin'
 
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
 alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
