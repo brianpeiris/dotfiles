@@ -33,6 +33,11 @@ if grep -q bash <<<$SHELL; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+banner "install nerd font"
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
+fc-cache -f -v
+
 banner "install vim"
 sudo apt install -y vim
 
