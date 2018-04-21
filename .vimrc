@@ -255,7 +255,7 @@ let g:ctrlp_custom_ignore = {'dir': '\.git$\|node_modules'}
 
 let g:sparkupNextMapping = '<c-d>'
 
-let g:ackprg = 'rg --vimgrep'
+let g:ackprg = 'rg -S --vimgrep'
 
 let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
 let g:ale_javascript_standard_use_global = 1

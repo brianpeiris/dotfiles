@@ -136,8 +136,7 @@ function vid() {
 
 alias v=vagrant.exe
 alias ys='yarn start --no-open'
-
-alias ys='yarn start --no-open'
+alias dc='docker-compose'
 
 function vsh() {
     identity=$(vid)
