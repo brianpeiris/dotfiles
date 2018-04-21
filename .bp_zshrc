@@ -2,6 +2,8 @@
 stty -ixon
 
 setopt menu_complete
+# Avoid having to hit enter twice after a completion
+bindkey -M menuselect '^M' .accept-line
 
 # Vim mode
 bindkey -v
@@ -137,7 +139,7 @@ function vid() {
 alias v=vagrant.exe
 alias ys='yarn start --no-open'
 
-alias ys='yarn start --no-open'
+alias dc='docker-compose'
 
 function vsh() {
     identity=$(vid)
