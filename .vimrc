@@ -180,7 +180,7 @@ inoremap <C-S> <C-O>:update<CR>
 " -- Plugin Settings
 " --
 
-function ErrorStatus()
+function! ErrorStatus()
   if ale#linter#Get(&filetype) == []
     highlight ErrorStatus ctermfg=244 ctermbg=236 
     return '- '
@@ -205,7 +205,7 @@ highlight AddStatus ctermfg=2 ctermbg=236
 highlight ChangeStatus ctermfg=3 ctermbg=236
 highlight DeleteStatus ctermfg=1 ctermbg=236
 
-function Modified()
+function! Modified()
   if &modified == 1
     highlight Modified ctermfg=3 ctermbg=236
     return '+'
