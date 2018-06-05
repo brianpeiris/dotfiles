@@ -138,6 +138,8 @@ alias v=vagrant.exe
 alias ys='yarn start --no-open'
 alias dc='docker-compose'
 
+alias fin="festival --tts <(echo 'finished')"
+
 function vsh() {
     identity=$(vid)
     ssh -p 2222 -i $identity ubuntu@localhost
