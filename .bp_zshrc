@@ -2,6 +2,8 @@
 stty -ixon
 
 setopt menu_complete
+# Avoid having to hit enter twice after a completion
+bindkey -M menuselect '^M' .accept-line
 
 # Vim mode
 bindkey -v
@@ -136,9 +138,14 @@ function vid() {
 
 alias v=vagrant.exe
 alias ys='yarn start --no-open'
+
 alias dc='docker-compose'
 
 alias fin="festival --tts <(echo 'finished')"
+
+functon vf() {
+    vim $(fzf)
+}
 
 function vsh() {
     identity=$(vid)
@@ -159,4 +166,6 @@ unalias gcam > /dev/null 2>&1
 
 export PATH="$HOME/.local/bin:$PATH"
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=34:ow=34'
+
+DISABLE_AUTO_TITLE="true"
 export LESS="XRF"

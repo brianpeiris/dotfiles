@@ -61,10 +61,15 @@ fi
 ~/.scm_breeze/install.sh
 
 banner "install ripgrep"
-if ! rg; then
+if ! which rg; then
   wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
   sudo dpkg -i ripgrep_0.8.1_amd64.deb
   rm ripgrep_0.8.1_amd64.deb
+fi
+
+if ! which fzf; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 fi
 
 banner "install vundle"

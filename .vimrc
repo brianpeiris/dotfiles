@@ -16,7 +16,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 
@@ -57,6 +56,7 @@ filetype plugin on
 " --
 
 set runtimepath+=~/dotfiles/snippets
+set runtimepath+=~/.fzf
 
 set hlsearch
 set number
@@ -162,6 +162,8 @@ imap <Leader>s <esc>:wa<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
+map <C-p> :FZF<CR>
+
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -248,11 +250,6 @@ endwhile
 
 let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
-
-let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_max_files=0
-let g:ctrlp_custom_ignore = {'dir': '\.git$\|node_modules'}
 
 let g:sparkupNextMapping = '<c-d>'
 
