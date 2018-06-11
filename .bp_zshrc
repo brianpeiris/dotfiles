@@ -115,6 +115,22 @@ function github_clone {
 }
 alias ghcl=github_clone
 
+function mcd() {
+    mkdir -p $1
+    cd $1
+}
+
+function github_download {
+    account=$(cut -d'/' -f1 <<< $1)
+    repo=$(cut -d'/' -f2 <<< $1)
+    mcd $account
+    wget -q https://github.com/$1/archive/master.zip
+    unzip -q master.zip
+    rm master.zip
+    cd $repo-master
+}
+alias ghd=github_download
+
 function _find_refs() {
     echo "Finding matches for script $1 ..."
     local guid="$(grep guid "$line" | sed 's/^.* //')"
@@ -125,11 +141,6 @@ function find_refs() {
     find Assets -iname "*$1*.meta" | while read line; do
         _find_refs "$line"
     done
-}
-
-function mcd() {
-    mkdir -p $1
-    cd $1
 }
 
 function vid() {
