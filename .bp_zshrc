@@ -141,6 +141,8 @@ alias ys='yarn start --no-open'
 
 alias dc='docker-compose'
 
+export FZF_DEFAULT_COMMAND='rg -l ""'
+
 functon vf() {
     vim $(fzf)
 }
