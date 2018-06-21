@@ -141,6 +141,7 @@ imap <Leader><Leader>d <esc>:Directory<CR>
 command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
 command! -nargs=+ Rg Ack <args>
+command! -nargs=+ Ra Ack! <args>
 
 " Strip trailing spaces on save
 " autocmd BufWritePre * :%s/\s\+$//e
