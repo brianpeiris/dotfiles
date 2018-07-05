@@ -152,6 +152,7 @@ alias ys='yarn start --no-open'
 
 alias dc='docker-compose'
 
+export FZF_DEFAULT_COMMAND='rg -l ""'
 alias fin="festival --tts <(echo 'finished')"
 
 export FZF_DEFAULT_COMMAND='rg -l ""'
