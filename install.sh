@@ -39,7 +39,7 @@ cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https:
 fc-cache -f -v
 
 banner "install vim"
-sudo apt install -y vim
+sudo apt install -y vim-gnome
 
 banner "install tmux"
 sudo apt install -y tmux
@@ -59,6 +59,13 @@ if [ ! -e ~/.scm_breeze ]; then
   git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
 fi
 ~/.scm_breeze/install.sh
+
+banner "install fd"
+if ! which fd; then
+  wget https://github.com/sharkdp/fd/releases/download/v7.0.0/fd_7.0.0_amd64.deb
+  sudo dpkg -i fd_7.0.0_amd64.deb
+  rm fd_7.0.0_amd64.deb
+fi
 
 banner "install ripgrep"
 if ! which rg; then

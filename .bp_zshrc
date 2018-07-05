@@ -124,7 +124,7 @@ function github_download {
     account=$(cut -d'/' -f1 <<< $1)
     repo=$(cut -d'/' -f2 <<< $1)
     mcd $account
-    wget -q https://github.com/$1/archive/master.zip
+    wget https://github.com/$1/archive/master.zip
     unzip -q master.zip
     rm master.zip
     cd $repo-master
@@ -154,6 +154,7 @@ alias dc='docker-compose'
 
 alias fin="festival --tts <(echo 'finished')"
 
+export FZF_DEFAULT_COMMAND='rg -l ""'
 functon vf() {
     vim $(fzf)
 }

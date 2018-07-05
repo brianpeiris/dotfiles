@@ -250,6 +250,8 @@ endwhile
 
 let g:NERDTreeIgnore=['\~$', '\.meta$']
 let g:NERDSpaceDelims=1
+let g:NERDTreeMapJumpNextSibling=''
+let g:NERDTreeMapJumpPrevSibling=''
 
 let g:sparkupNextMapping = '<c-d>'
 
