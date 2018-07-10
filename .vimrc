@@ -25,6 +25,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
 Plugin 'w0rp/ale'
+Plugin 'prettier/vim-prettier'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'

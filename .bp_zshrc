@@ -22,6 +22,7 @@ adhoc="$winhome/.adhoc_zshrc"
 alias ea='vim $adhoc'
 alias ec='vim ~/dotfiles/.bp_zshrc'
 alias rc='source ~/dotfiles/.bp_zshrc'
+alias ev='vim ~/.vimrc'
 
 alias ~~='cd "$winhome"'
 
