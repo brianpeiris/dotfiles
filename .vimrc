@@ -256,7 +256,7 @@ let g:NERDTreeMapJumpPrevSibling=''
 
 let g:sparkupNextMapping = '<c-d>'
 
-let g:ackprg = 'rg -S --vimgrep'
+let g:ackprg = 'rg -S --vimgrep -g "!node_modules"'
 
 let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
