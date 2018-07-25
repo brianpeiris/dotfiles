@@ -124,11 +124,16 @@ function mcd() {
 function github_download {
     account=$(cut -d'/' -f1 <<< $1)
     repo=$(cut -d'/' -f2 <<< $1)
+    version="master"
+    if [[ "$2" != "" ]]; then
+        version=$2
+    fi
     mcd $account
-    wget https://github.com/$1/archive/master.zip
-    unzip -q master.zip
-    rm master.zip
-    cd $repo-master
+    wget https://github.com/$1/archive/$version.zip
+    unzip -q $version.zip
+    rm $version.zip
+    version=$(echo $version | cut -c 2-)
+    cd $repo-$version
 }
 alias ghd=github_download
 

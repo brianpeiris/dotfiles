@@ -46,6 +46,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'mileszs/ack.vim'
+Plugin 'junegunn/fzf.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
