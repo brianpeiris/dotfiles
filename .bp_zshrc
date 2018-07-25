@@ -106,7 +106,7 @@ alias pushto='pusht origin'
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
 alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
 
-alias rg='rg -S --path-separator "/"'
+alias rg='rg -S --path-separator "/" -g "!node_modules"'
 alias rgc='rg --type cs'
 
 function github_clone {
@@ -158,10 +158,9 @@ alias ys='yarn start --no-open'
 
 alias dc='docker-compose'
 
-export FZF_DEFAULT_COMMAND='rg -l ""'
 alias fin="festival --tts <(echo 'finished')"
 
-export FZF_DEFAULT_COMMAND='rg -l ""'
+export FZF_DEFAULT_COMMAND='rg -l -g "!node_modules" ""'
 functon vf() {
     vim $(fzf)
 }
