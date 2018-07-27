@@ -40,6 +40,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'PProvost/vim-ps1'
+Plugin 'ap/vim-css-color'
 
 Plugin 'terryma/vim-multiple-cursors'
 
@@ -126,6 +127,8 @@ set guifont=Ubuntu\ Mono:h9
 " Use a backup copy instead of renaming files
 set backupcopy=yes
 
+let mapleader=" "
+
 " --
 " -- Commands
 " --
@@ -137,13 +140,12 @@ command! Merge /[<=>]\{7}
 
 " Quick access to NERDTree for the current file's directory
 command! Directory e %:h
-map <Leader><Leader>d <esc>:Directory<CR>
-imap <Leader><Leader>d <esc>:Directory<CR>
+map <Leader>d <esc>:Directory<CR>
+imap <Leader>d <esc>:Directory<CR>
 
 command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
-command! -nargs=+ Rg Ack <args>
-command! -nargs=+ Ra Ack! <args>
+command! -nargs=+ Rg Ack! <args>
 
 " Strip trailing spaces on save
 " autocmd BufWritePre * :%s/\s\+$//e
@@ -246,7 +248,7 @@ let g:lightline = {
 " Switch to a window number with \\<num>
 let g:WinNum = 1
 while g:WinNum <= 20
-    execute 'nnoremap <Leader><Leader>' . g:WinNum . ' :' . g:WinNum . 'wincmd w<CR>'
+    execute 'nnoremap <Leader>' . g:WinNum . ' :' . g:WinNum . 'wincmd w<CR>'
     let g:WinNum = g:WinNum + 1
 endwhile
 
