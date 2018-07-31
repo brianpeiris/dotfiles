@@ -137,6 +137,14 @@ function github_download {
 }
 alias ghd=github_download
 
+alias hpl='hub pr list'
+alias hpc='hub pr checkout'
+alias hic='hub issue create'
+function hicm {
+    hub issue create -m "$*"
+}
+alias pia='project issue add'
+
 function _find_refs() {
     echo "Finding matches for script $1 ..."
     local guid="$(grep guid "$line" | sed 's/^.* //')"

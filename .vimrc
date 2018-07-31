@@ -141,7 +141,6 @@ command! Merge /[<=>]\{7}
 " Quick access to NERDTree for the current file's directory
 command! Directory e %:h
 map <Leader>d <esc>:Directory<CR>
-imap <Leader>d <esc>:Directory<CR>
 
 command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
@@ -162,7 +161,6 @@ augroup END
 " --
 
 map <Leader>s <esc>:wa<CR>
-imap <Leader>s <esc>:wa<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 

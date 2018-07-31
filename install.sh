@@ -12,11 +12,17 @@ function banner() {
 script_path=$(dirname $(readlink -f $0))
 
 banner "add vim ppa"
-sudo add-apt-repository -y ppa:jonathonf/vim
-sudo add-apt-repository -y ppa:git-core/ppa
+if [ "$(ls /etc/apt/sources.list.d/jonathonf*)" == "" ]; then
+  sudo add-apt-repository -y ppa:jonathonf/vim
+fi
+if [ "$(ls /etc/apt/sources.list.d/git-core*)" == "" ]; then
+  sudo add-apt-repository -y ppa:git-core/ppa
+fi
 
 banner "update apt"
-sudo apt update
+if [ `date -I` > `stat /var/cache/apt/pkgcache.bin | grep -i modify | cut -d' ' -f2` ]; then
+  sudo apt update
+fi
 
 banner "install latest git"
 sudo apt install -y git
@@ -34,10 +40,12 @@ if grep -q bash <<<$SHELL; then
 fi
 
 if which fc-cache; then
-  banner "install nerd font"
-  mkdir -p ~/.local/share/fonts
-  cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
-  fc-cache -f -v
+  if [ "$(ls ~/.local/share/fonts/*Nerd*)" == "" ]; then
+    banner "install nerd font"
+    mkdir -p ~/.local/share/fonts
+    cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
+    fc-cache -f -v
+  fi
 fi
 
 banner "install vim"
@@ -59,8 +67,8 @@ fi
 banner "install scm breeze"
 if [ ! -e ~/.scm_breeze ]; then
   git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
+  ~/.scm_breeze/install.sh
 fi
-~/.scm_breeze/install.sh
 
 banner "install fd"
 if ! which fd; then
@@ -74,6 +82,17 @@ if ! which rg; then
   wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
   sudo dpkg -i ripgrep_0.8.1_amd64.deb
   rm ripgrep_0.8.1_amd64.deb
+fi
+
+banner "install hub"
+if ! which hub; then
+  version=2.5.0
+  name="hub-linux-amd64-$version"
+  wget https://github.com/github/hub/releases/download/v$version/$name.tgz
+  mkdir -p ~/.local/bin/
+  tar xz -C ~/.local/bin/ -f $name.tgz
+  ln -s ~/.local/bin/$name/bin/hub ~/.local/bin/hub
+  rm $name.tgz
 fi
 
 if ! which fzf; then
