@@ -144,6 +144,9 @@ function hicm {
     hub issue create -m "$*"
 }
 alias pia='project issue add'
+function pat {
+    project issue add "$1" "To do" "$2"
+}
 
 function _find_refs() {
     echo "Finding matches for script $1 ..."
