@@ -29,11 +29,11 @@ alias ~~='cd "$winhome"'
 function start_ssh_agent {
     if [ -z "$SSH_AGENT_PID" ]; then
         eval `ssh-agent -s` > /dev/null
+        ssh-add
     fi
 }
 alias sa=start_ssh_agent
 start_ssh_agent
-ssh-add
 
 function run_smooth() {
     oldoutput=""
