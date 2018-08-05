@@ -127,7 +127,7 @@ set guifont=Ubuntu\ Mono:h9
 " Use a backup copy instead of renaming files
 set backupcopy=yes
 
-let mapleader=" "
+let mapleader=' '
 
 " --
 " -- Commands
