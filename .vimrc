@@ -143,6 +143,8 @@ set backupcopy=yes
 
 let mapleader=' '
 
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
+
 " --
 " -- Commands
 " --
@@ -154,6 +156,9 @@ command! Merge /[<=>]\{7}
 
 command! Ev :sp ~/.vimrc
 command! Rv :source ~/.vimrc
+
+map <Leader>w <esc>:set invlist<CR>
+map <Leader>i <esc>:set invpaste<CR>
 
 command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
