@@ -165,9 +165,9 @@ function vid() {
 }
 
 alias v=vagrant.exe
-alias ys='yarn start --no-open'
 
 alias dc='docker-compose'
+alias bs='browser-sync start -s -w --no-open --no-notify'
 
 alias fin="festival --tts <(echo 'finished')"
 

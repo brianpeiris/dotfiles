@@ -129,6 +129,8 @@ set backupcopy=yes
 
 let mapleader=' '
 
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
+
 " --
 " -- Commands
 " --
@@ -141,6 +143,9 @@ command! Merge /[<=>]\{7}
 " Quick access to NERDTree for the current file's directory
 command! Directory e %:h
 map <Leader>d <esc>:Directory<CR>
+
+map <Leader>w <esc>:set invlist<CR>
+map <Leader>i <esc>:set invpaste<CR>
 
 command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
