@@ -38,8 +38,8 @@ start_ssh_agent
 function run_smooth() {
     oldoutput=""
     while (true) {
-        run="unbuffer $* 2>&1"
-        output=$(eval $run)
+        echo $*
+        output=$(unbuffer $* 2>&1 | cut -c -120 | head -n $MAX_LINES)
         if [[ "$output" != "$oldoutput" ]]
         then
             clear
@@ -166,6 +166,8 @@ function vid() {
 
 alias v=vagrant.exe
 alias ys='yarn start --no-open'
+alias ai='sudo apt install'
+alias au='sudo apt update'
 
 alias dc='docker-compose'
 
