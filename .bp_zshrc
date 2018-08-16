@@ -169,6 +169,13 @@ alias ai='sudo apt install'
 alias au='sudo apt update'
 
 alias dc='docker-compose'
+function dcr() {
+    container="$1"
+    shift
+    docker-compose run "$container" sh -c "$*"
+}
+alias own="sudo chown -R $USER:$USER"
+
 alias bs='browser-sync start -s -w --no-open --no-notify'
 
 alias fin="festival --tts <(echo 'finished')"
