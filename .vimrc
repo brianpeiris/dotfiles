@@ -41,6 +41,7 @@ Plugin 'elzr/vim-json'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'PProvost/vim-ps1'
 Plugin 'ap/vim-css-color'
+Plugin 'elixir-editors/vim-elixir'
 
 Plugin 'terryma/vim-multiple-cursors'
 
@@ -86,6 +87,7 @@ augroup searchhighlight
   autocmd ColorScheme * highlight Search cterm=reverse
 augroup END
 highlight Search term=reverse cterm=reverse gui=reverse
+highlight ColorColumn term=reverse ctermbg=234 guibg=#3c3d37
 
 hi! def link jsonKeyword Identifier
 
@@ -105,6 +107,18 @@ set colorcolumn=120
 
 set cursorline
 set cursorcolumn
+
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+    au VimEnter * setlocal cursorcolumn
+    au WinEnter * setlocal cursorcolumn
+    au BufWinEnter * setlocal cursorcolumn
+    au WinLeave * setlocal nocursorcolumn
+augroup END
 
 " Enable local vimrcs
 set exrc
@@ -129,6 +143,8 @@ set backupcopy=yes
 
 let mapleader=' '
 
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
+
 " --
 " -- Commands
 " --
@@ -138,9 +154,11 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 
 command! Merge /[<=>]\{7}
 
-" Quick access to NERDTree for the current file's directory
-command! Directory e %:h
-map <Leader>d <esc>:Directory<CR>
+command! Ev :sp ~/.vimrc
+command! Rv :source ~/.vimrc
+
+map <Leader>w <esc>:set invlist<CR>
+map <Leader>i <esc>:set invpaste<CR>
 
 command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
@@ -160,7 +178,11 @@ augroup END
 " -- Mappings
 " --
 
-map <Leader>s <esc>:wa<CR>
+map <Leader>d :e %:h<CR>
+map <Leader>s :wa<CR>
+map <Leader>hi :noh<CR>
+map <Leader>cc <C-w>c
+map <Leader>y myggVG"+y`y
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
@@ -261,6 +283,6 @@ let g:ackprg = 'rg -S --vimgrep -g "!node_modules"'
 
 let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
-let g:ale_linters = {'javascript': ['eslint', 'semistandard']}
+let g:ale_linters = { 'javascript': ['eslint', 'semistandard'], 'elixir': ['mix'] }
 let g:ale_html_htmlhint_executable = 'scripts/lint-html.js'
 let g:ale_html_htmlhint_use_global = 1
