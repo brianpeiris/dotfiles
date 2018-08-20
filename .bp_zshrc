@@ -168,6 +168,7 @@ alias v=vagrant.exe
 alias ys='yarn start --no-open'
 
 alias dc='docker-compose'
+alias ai='sudo apt install'
 
 alias fin="festival --tts <(echo 'finished')"
 
