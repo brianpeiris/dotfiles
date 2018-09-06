@@ -141,7 +141,7 @@ set guifont=Ubuntu\ Mono:h9
 " Use a backup copy instead of renaming files
 set backupcopy=yes
 
-let mapleader=' '
+let g:mapleader=' '
 
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
 
@@ -178,6 +178,7 @@ augroup END
 " -- Mappings
 " --
 
+map <Leader>p :PrettierAsync<CR>
 map <Leader>d :e %:h<CR>
 map <Leader>s :wa<CR>
 map <Leader>hi :noh<CR>
@@ -286,3 +287,5 @@ let g:ale_javascript_standard_use_global = 1
 let g:ale_linters = { 'javascript': ['eslint', 'semistandard'], 'elixir': ['mix'] }
 let g:ale_html_htmlhint_executable = 'scripts/lint-html.js'
 let g:ale_html_htmlhint_use_global = 1
+let g:ale_fixers = { 'elixir': ['mix_format'] }
+let g:ale_fix_on_save = 1

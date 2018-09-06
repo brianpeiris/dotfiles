@@ -132,7 +132,9 @@ function github_download {
     wget https://github.com/$1/archive/$version.zip
     unzip -q $version.zip
     rm $version.zip
-    version=$(echo $version | cut -c 2-)
+    if [[ "$version" != "master" ]]; then
+        version=$(echo $version | cut -c 2-)
+    fi
     cd $repo-$version
 }
 alias ghd=github_download
@@ -145,8 +147,11 @@ function hicm {
 }
 alias pia='project issue add'
 function pat {
-    project issue add "$1" "To do" "$2"
+    project_name="$1"
+    issue_number="$2"
+    project issue add "$project_name" "To do" "$issue_number"
 }
+alias ab='pat beta'
 
 function _find_refs() {
     echo "Finding matches for script $1 ..."
