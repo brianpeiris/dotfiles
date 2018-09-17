@@ -20,7 +20,9 @@ if [ "$(ls /etc/apt/sources.list.d/git-core*)" == "" ]; then
 fi
 
 banner "update apt"
-if [ `date -I` > `stat /var/cache/apt/pkgcache.bin | grep -i modify | cut -d' ' -f2` ]; then
+curr_date=$(date -I)
+last_update=$(stat /var/cache/apt/pkgcache.bin | grep -i modify | cut -d' ' -f2)
+if [[ "$curr_date" > "$last_update" ]]; then
   sudo apt update
 fi
 
