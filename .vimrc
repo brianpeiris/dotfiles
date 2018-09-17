@@ -178,7 +178,6 @@ augroup END
 " -- Mappings
 " --
 
-map <Leader>p :PrettierAsync<CR>
 map <Leader>d :e %:h<CR>
 map <Leader>s :wa<CR>
 map <Leader>hi :noh<CR>
