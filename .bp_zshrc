@@ -39,7 +39,7 @@ function run_smooth() {
     oldoutput=""
     while (true) {
         echo $*
-        output=$(unbuffer $* 2>&1 | cut -c -120 | head -n $MAX_LINES)
+        output=$(unbuffer $* 2>&1 | cut -c -$MAX_CHARS | head -n $MAX_LINES)
         if [[ "$output" != "$oldoutput" ]]
         then
             clear
