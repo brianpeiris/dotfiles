@@ -103,6 +103,17 @@ function pushr {
 alias pusho='pushr origin'
 alias pushto='pusht origin'
 
+function lay {
+    repo=$1
+    z $1;
+    tmux split-window
+    tmux last-pane
+    tmux split-window -h
+    tmux rename-window $1
+    tmux last-pane
+    tmux resize-pane -U 60
+}
+
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
 alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
 
