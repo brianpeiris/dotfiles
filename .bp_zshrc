@@ -36,6 +36,8 @@ alias sa=start_ssh_agent
 start_ssh_agent
 
 function run_smooth() {
+    MAX_CHARS=${MAX_CHARS:-120}
+    MAX_LINES=${MAX_LINES:-20}
     oldoutput=""
     while (true) {
         echo $*
@@ -111,7 +113,7 @@ function lay {
     tmux split-window -h
     tmux rename-window $1
     tmux last-pane
-    tmux resize-pane -U 60
+    tmux resize-pane -y 10
 }
 
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
@@ -192,7 +194,7 @@ function dcr() {
 }
 alias own="sudo chown -R $USER:$USER"
 
-alias bs='browser-sync start -s -w --no-open --no-notify'
+alias bs='browser-sync start -c ~/.browser-sync.config.js -s -w --no-open --no-notify'
 
 alias fin="festival --tts <(echo 'finished')"
 

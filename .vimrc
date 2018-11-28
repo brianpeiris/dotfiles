@@ -29,6 +29,7 @@ Plugin 'prettier/vim-prettier'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'AndrewRadev/linediff.vim'
 
 Plugin 'itchyny/lightline.vim'
 Plugin 'majutsushi/tagbar'
@@ -42,6 +43,7 @@ Plugin 'sirtaj/vim-openscad'
 Plugin 'PProvost/vim-ps1'
 Plugin 'ap/vim-css-color'
 Plugin 'elixir-editors/vim-elixir'
+Plugin 'tikhomirov/vim-glsl'
 
 Plugin 'terryma/vim-multiple-cursors'
 
