@@ -46,7 +46,6 @@ Plugin 'elixir-editors/vim-elixir'
 Plugin 'tikhomirov/vim-glsl'
 
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'AndrewRadev/linediff.vim'
 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
