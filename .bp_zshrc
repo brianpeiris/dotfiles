@@ -152,6 +152,8 @@ function github_download {
 }
 alias ghd=github_download
 
+alias ns='npm start'
+
 alias hpl='hub pr list'
 alias hpc='hub pr checkout'
 alias hic='hub issue create'
@@ -194,7 +196,7 @@ function dcr() {
 }
 alias own="sudo chown -R $USER:$USER"
 
-alias bs='browser-sync start -c ~/.browser-sync.config.js -s -w --no-open --no-notify'
+alias bs='browser-sync start -c ~/.browser-sync.config.js -s -w --no-open --no-notify --no-ghost-ui'
 
 alias fin="festival --tts <(echo 'finished')"
 
