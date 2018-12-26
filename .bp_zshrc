@@ -196,7 +196,7 @@ function dcr() {
 }
 alias own="sudo chown -R $USER:$USER"
 
-alias bs='browser-sync start -c ~/.browser-sync.config.js -s -w --no-open --no-notify --no-ghost-ui'
+alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-ui'
 
 alias fin="festival --tts <(echo 'finished')"
 
