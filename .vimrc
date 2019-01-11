@@ -290,3 +290,21 @@ let g:ale_html_htmlhint_executable = 'scripts/lint-html.js'
 let g:ale_html_htmlhint_use_global = 1
 let g:ale_fixers = { 'elixir': ['mix_format'] }
 let g:ale_fix_on_save = 1
+
+function! WriteHiveMind()
+  let l:path = substitute(getcwd() . '/' . expand('%'), '/home/brian/Code/', '', '')
+  call writefile(
+    \['{"time":"' . strftime('%H:%M') . '", "path":"' . l:path . '", "line":' . line('.') . ', "col":' . col('.') . '}'],
+    \expand('~/hivemind/info.txt'))
+endfunction
+
+augroup HiveMind
+  autocmd HiveMind BufEnter * call WriteHiveMind()
+  autocmd HiveMind BufWinEnter * call WriteHiveMind()
+  autocmd HiveMind WinEnter * call WriteHiveMind()
+  autocmd HiveMind WinNew * call WriteHiveMind()
+  autocmd HiveMind TabEnter * call WriteHiveMind()
+  autocmd HiveMind TabNew * call WriteHiveMind()
+  autocmd HiveMind CursorMoved * call WriteHiveMind()
+  autocmd HiveMind CursorMovedI * call WriteHiveMind()
+augroup END
