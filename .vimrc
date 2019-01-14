@@ -292,7 +292,7 @@ let g:ale_fixers = { 'elixir': ['mix_format'] }
 let g:ale_fix_on_save = 1
 
 function! WriteHiveMind()
-  let l:path = substitute(getcwd() . '/' . expand('%'), '/home/brian/Code/', '', '')
+  let l:path = substitute(getcwd() . '/' . expand('%'), '/home/brianpeiris/Code/', '', '')
   call writefile(
     \['{"time":"' . strftime('%H:%M') . '", "path":"' . l:path . '", "line":' . line('.') . ', "col":' . col('.') . '}'],
     \expand('~/hivemind/info.txt'))

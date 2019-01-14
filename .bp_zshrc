@@ -106,12 +106,16 @@ alias pusho='pushr origin'
 alias pushto='pusht origin'
 
 function lay {
-    repo=$1
-    z $1;
+    if [[ "$1" == "" ]]; then
+        repo=$(basename "$PWD")
+    else
+        repo=$1
+        z $repo
+    fi
     tmux split-window
     tmux last-pane
     tmux split-window -h
-    tmux rename-window $1
+    tmux rename-window $repo
     tmux last-pane
     tmux resize-pane -y 10
 }
