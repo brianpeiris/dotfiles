@@ -112,12 +112,17 @@ function lay {
         repo=$1
         z $repo
     fi
+    if [[ "$2" == "" ]]; then
+        h=10
+    else 
+        h=$2
+    fi
     tmux split-window
     tmux last-pane
     tmux split-window -h
     tmux rename-window $repo
     tmux last-pane
-    tmux resize-pane -y 10
+    tmux resize-pane -y $h
 }
 
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
