@@ -87,7 +87,7 @@ if ! which rg; then
 fi
 
 banner "install hub"
-if ! which hub; then
+if [ ! -e ~/.local/bin/hub ]; then
   version=2.5.0
   name="hub-linux-amd64-$version"
   wget https://github.com/github/hub/releases/download/v$version/$name.tgz
