@@ -125,6 +125,8 @@ function lay {
     tmux resize-pane -y $h
 }
 
+alias trn='tmux rename-window'
+
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
 alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
 
