@@ -15,7 +15,7 @@ winuser="$(cmd.exe /c 'echo %username%' 2>/dev/null | tr -d '\r')"
 winhome="/mnt/c/Users/$winuser"
 
 if [ ! -e $winhome ]; then
-    winhome=$HOME
+	winhome=$HOME
 fi
 
 adhoc="$winhome/.adhoc_zshrc"
@@ -27,43 +27,43 @@ alias ev='vim ~/.vimrc'
 alias ~~='cd "$winhome"'
 
 function start_ssh_agent {
-    if [ -z "$SSH_AGENT_PID" ]; then
-        eval `ssh-agent -s` > /dev/null
-        ssh-add
-    fi
+	if [ -z "$SSH_AGENT_PID" ]; then
+		eval `ssh-agent -s` > /dev/null
+		ssh-add
+	fi
 }
 alias sa=start_ssh_agent
 start_ssh_agent
 
 function run_smooth() {
-    MAX_CHARS=${MAX_CHARS:-120}
-    MAX_LINES=${MAX_LINES:-20}
-    oldoutput=""
-    while (true) {
-        echo $*
-        output=$(unbuffer $* 2>&1 | cut -c -$MAX_CHARS | head -n $MAX_LINES)
-        if [[ "$output" != "$oldoutput" ]]
-        then
-            clear
-            tput cup 2 0
-            echo -E "$output"
-            oldoutput="$output"
-        fi
-        tput cup 0 0
-        echo $(date)
-        sleep 1
-    }
+	MAX_CHARS=${MAX_CHARS:-120}
+	MAX_LINES=${MAX_LINES:-20}
+	oldoutput=""
+	while (true) {
+		echo $*
+		output=$(unbuffer $* 2>&1 | cut -c -$MAX_CHARS | head -n $MAX_LINES)
+		if [[ "$output" != "$oldoutput" ]]
+		then
+			clear
+			tput cup 2 0
+			echo -E "$output"
+			oldoutput="$output"
+		fi
+		tput cup 0 0
+		echo $(date)
+		sleep 1
+	}
 }
 alias rs=run_smooth
 
 function android_ip() {
-    adb shell ifconfig | grep "inet addr" | grep -v 127 | cut -d":" -f2 | cut -d" " -f1
+	adb shell ifconfig | grep "inet addr" | grep -v 127 | cut -d":" -f2 | cut -d" " -f1
 }
 alias aip=android_ip
 function adb_remote() {
-    ip=$(android_ip)
-    adb tcpip 5555
-    adb connect $ip
+	ip=$(android_ip)
+	adb tcpip 5555
+	adb connect $ip
 }
 alias adbr=adb_remote
 alias adbi='adb install -r'
@@ -91,40 +91,41 @@ alias gpm='git pull origin master'
 alias gbv='git branch -vv'
 alias code='cd "$winhome/Code"'
 function gcm {
-    git commit -m "$*"
+	git commit -m "$*"
 }
 function gcam {
-    git commit -am "$*"
+	git commit -am "$*"
 }
 function pusht {
-    git push -u $1 $(gname)
+	git push -u $1 $(gname)
 }
 function pushr {
-    git push $1 $(gname)
+	git push $1 $(gname)
 }
 alias pusho='pushr origin'
 alias pushto='pusht origin'
 
 function lay {
-    if [[ "$1" == "" ]]; then
-        repo=$(basename "$PWD")
-    else
-        repo=$1
-        z $repo
-    fi
-    if [[ "$2" == "" ]]; then
-        h=10
-    else 
-        h=$2
-    fi
-    tmux split-window
-    tmux last-pane
-    tmux split-window -h
-    tmux rename-window $repo
-    tmux last-pane
-    tmux resize-pane -y $h
+	if [[ "$1" == "" ]]; then
+		repo=$(basename "$PWD")
+	else
+		repo=$1
+		z $repo
+	fi
+	if [[ "$2" == "" ]]; then
+		h=10
+	else 
+		h=$2
+	fi
+	tmux split-window
+	tmux last-pane
+	tmux split-window -h
+	tmux rename-window $repo
+	tmux last-pane
+	tmux resize-pane -y $h
 }
 
+alias trr='tmux resize -y'
 alias trn='tmux rename-window'
 
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
@@ -134,32 +135,32 @@ alias rg='rg -S --path-separator "/" -g "!node_modules"'
 alias rgc='rg --type cs'
 
 function github_clone {
-    repo=$1
-    git clone git@github.com:$repo $repo
-    cd $repo
+	repo=$1
+	git clone git@github.com:$repo $repo
+	cd $repo
 }
 alias ghcl=github_clone
 
 function mcd() {
-    mkdir -p $1
-    cd $1
+	mkdir -p $1
+	cd $1
 }
 
 function github_download {
-    account=$(cut -d'/' -f1 <<< $1)
-    repo=$(cut -d'/' -f2 <<< $1)
-    version="master"
-    if [[ "$2" != "" ]]; then
-        version=$2
-    fi
-    mcd $account
-    wget https://github.com/$1/archive/$version.zip
-    unzip -q $version.zip
-    rm $version.zip
-    if [[ "$version" != "master" ]]; then
-        version=$(echo $version | cut -c 2-)
-    fi
-    cd $repo-$version
+	account=$(cut -d'/' -f1 <<< $1)
+	repo=$(cut -d'/' -f2 <<< $1)
+	version="master"
+	if [[ "$2" != "" ]]; then
+		version=$2
+	fi
+	mcd $account
+	wget https://github.com/$1/archive/$version.zip
+	unzip -q $version.zip
+	rm $version.zip
+	if [[ "$version" != "master" ]]; then
+		version=$(echo $version | cut -c 2-)
+	fi
+	cd $repo-$version
 }
 alias ghd=github_download
 
@@ -169,30 +170,30 @@ alias hpl='hub pr list'
 alias hpc='hub pr checkout'
 alias hic='hub issue create'
 function hicm {
-    hub issue create -m "$*"
+	hub issue create -m "$*"
 }
 alias pia='project issue add'
 function pat {
-    project_name="$1"
-    issue_number="$2"
-    project issue add "$project_name" "To do" "$issue_number"
+	project_name="$1"
+	issue_number="$2"
+	project issue add "$project_name" "To do" "$issue_number"
 }
 alias ab='pat beta'
 
 function _find_refs() {
-    echo "Finding matches for script $1 ..."
-    local guid="$(grep guid "$line" | sed 's/^.* //')"
-    grep -R "$guid" Assets | grep -v "$1"
-    echo ""
+	echo "Finding matches for script $1 ..."
+	local guid="$(grep guid "$line" | sed 's/^.* //')"
+	grep -R "$guid" Assets | grep -v "$1"
+	echo ""
 }
 function find_refs() {
-    find Assets -iname "*$1*.meta" | while read line; do
-        _find_refs "$line"
-    done
+	find Assets -iname "*$1*.meta" | while read line; do
+		_find_refs "$line"
+	done
 }
 
 function vid() {
-    echo "$(vagrant.exe ssh-config | grep -i identityfile | cut -d'"' -f2 | sed 's/C:/\/mnt\/c/')"
+	echo "$(vagrant.exe ssh-config | grep -i identityfile | cut -d'"' -f2 | sed 's/C:/\/mnt\/c/')"
 }
 
 alias v=vagrant.exe
@@ -201,9 +202,9 @@ alias au='sudo apt update'
 
 alias dc='docker-compose'
 function dcr() {
-    container="$1"
-    shift
-    docker-compose run "$container" sh -c "$*"
+	container="$1"
+	shift
+	docker-compose run "$container" sh -c "$*"
 }
 alias own="sudo chown -R $USER:$USER"
 
@@ -216,17 +217,17 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 export FZF_DEFAULT_COMMAND='rg -l -g "!node_modules" ""'
 functon vf() {
-    vim $(fzf)
+	vim $(fzf)
 }
 
 function vsh() {
-    identity=$(vid)
-    ssh -p 2222 -i $identity ubuntu@localhost
+	identity=$(vid)
+	ssh -p 2222 -i $identity ubuntu@localhost
 }
 
 function vcp() {
-    identity=$(vid)
-    scp -i $identity -P 2222 -- $1 $2
+	identity=$(vid)
+	scp -i $identity -P 2222 -- $1 $2
 }
 
 PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
