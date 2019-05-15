@@ -213,6 +213,8 @@ alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-ui --directo
 alias fin="festival --tts <(echo 'finished')"
 
 alias im="iex -S mix"
+alias ms="mix phx.server"
+
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export FZF_DEFAULT_COMMAND='rg -l -g "!node_modules" ""'
