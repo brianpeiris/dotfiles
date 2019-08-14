@@ -285,7 +285,7 @@ let g:ackprg = 'rg -S --vimgrep -g "!node_modules"'
 
 let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
-let g:ale_linters = { 'javascript': ['eslint', 'semistandard'], 'elixir': ['mix'] }
+let g:ale_linters = { 'javascript': ['eslint', 'semistandard'], 'elixir': [] }
 let g:ale_html_htmlhint_executable = 'scripts/lint-html.js'
 let g:ale_html_htmlhint_use_global = 1
 let g:ale_fixers = { 'elixir': ['mix_format'] }
