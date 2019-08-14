@@ -132,6 +132,11 @@ function zt {
 	trn $1
 }
 
+function zt {
+	z $1
+	trn $1
+}
+
 alias notes='tmux rename-window notes; vim "$winhome/Documents/notes.txt"'
 alias ip='ifconfig | grep -i wifi -C1 | tail -1 | cut -d":" -f2 | sed "s/ .\\+//"'
 
@@ -218,6 +223,7 @@ alias fin="festival --tts <(echo 'finished')"
 
 alias im="iex -S mix"
 alias ms="mix phx.server"
+alias kb="killall -9 beam.smp"
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
