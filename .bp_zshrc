@@ -127,6 +127,7 @@ function lay {
 
 alias trr='tmux resize -y'
 alias trn='tmux rename-window'
+alias prn='printf "\033]2;%s\033\\"'
 function zt {
 	z $1
 	trn $1
