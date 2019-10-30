@@ -45,6 +45,9 @@ Plugin 'ap/vim-css-color'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'tikhomirov/vim-glsl'
 
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+
 Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}

@@ -127,6 +127,7 @@ function lay {
 
 alias trr='tmux resize -y'
 alias trn='tmux rename-window'
+alias prn='printf "\033]2;%s\033\\"'
 function zt {
 	z $1
 	trn $1
@@ -173,6 +174,7 @@ alias ns='npm start'
 alias hpl='hub pr list'
 alias hpc='hub pr checkout'
 alias hic='hub issue create'
+alias hpr='hub pull-request'
 function hicm {
 	hub issue create -m "$*"
 }
