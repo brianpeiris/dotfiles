@@ -125,7 +125,7 @@ function lay {
 	tmux resize-pane -y $h
 }
 
-alias trr='tmux resize -y'
+alias trr='tmux resize-pane -y'
 alias trn='tmux rename-window'
 alias prn='printf "\033]2;%s\033\\"'
 function zt {
