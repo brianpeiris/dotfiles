@@ -246,6 +246,9 @@ PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
 unalias gcm > /dev/null 2>&1
 unalias gcam > /dev/null 2>&1
 
+alias dus='du -d1 | sort -n'
+alias duh='du -hd1'
+
 export PATH="$HOME/.local/bin:$PATH"
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=34:ow=34'
 
