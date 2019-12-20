@@ -35,7 +35,7 @@ function start_ssh_agent {
 alias sa=start_ssh_agent
 start_ssh_agent
 
-function run_smooth() {
+function run_smooth {
 	MAX_CHARS=${MAX_CHARS:-120}
 	MAX_LINES=${MAX_LINES:-20}
 	oldoutput=""
@@ -56,11 +56,11 @@ function run_smooth() {
 }
 alias rs=run_smooth
 
-function android_ip() {
+function android_ip {
 	adb shell ifconfig | grep "inet addr" | grep -v 127 | cut -d":" -f2 | cut -d" " -f1
 }
 alias aip=android_ip
-function adb_remote() {
+function adb_remote {
 	ip=$(android_ip)
 	adb tcpip 5555
 	adb connect $ip
@@ -86,7 +86,6 @@ alias ginit='git init && git add . && git commit -m "initial commit"'
 alias gname='git rev-parse --abbrev-ref HEAD'
 alias push='git push'
 alias pull='git pull'
-alias gpm='git pull origin master'
 alias gpm='git pull origin master'
 alias gbv='git branch -vv'
 alias code='cd "$winhome/Code"'
@@ -146,7 +145,7 @@ function github_clone {
 }
 alias ghcl=github_clone
 
-function mcd() {
+function mcd {
 	mkdir -p $1
 	cd $1
 }
@@ -186,28 +185,23 @@ function pat {
 }
 alias ab='pat beta'
 
-function _find_refs() {
+function _find_refs {
 	echo "Finding matches for script $1 ..."
 	local guid="$(grep guid "$line" | sed 's/^.* //')"
 	grep -R "$guid" Assets | grep -v "$1"
 	echo ""
 }
-function find_refs() {
+function find_refs {
 	find Assets -iname "*$1*.meta" | while read line; do
 		_find_refs "$line"
 	done
 }
 
-function vid() {
-	echo "$(vagrant.exe ssh-config | grep -i identityfile | cut -d'"' -f2 | sed 's/C:/\/mnt\/c/')"
-}
-
-alias v=vagrant.exe
 alias ai='sudo apt install'
 alias au='sudo apt update'
 
 alias dc='docker-compose'
-function dcr() {
+function dcr {
 	container="$1"
 	shift
 	docker-compose run "$container" sh -c "$*"
@@ -225,18 +219,8 @@ alias kb="killall -9 beam.smp"
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export FZF_DEFAULT_COMMAND='rg -l -g "!node_modules" ""'
-functon vf() {
+function vf {
 	vim $(fzf)
-}
-
-function vsh() {
-	identity=$(vid)
-	ssh -p 2222 -i $identity ubuntu@localhost
-}
-
-function vcp() {
-	identity=$(vid)
-	scp -i $identity -P 2222 -- $1 $2
 }
 
 PATH=$(echo $PATH | tr ':' '\n' | grep -vi ruby | tr '\n' ':')
