@@ -170,6 +170,8 @@ function github_download {
 alias ghd=github_download
 
 alias ns='npm start'
+alias nid='npm install -D'
+alias ni='npm install'
 
 alias hpl='hub pr list'
 alias hpc='hub pr checkout'

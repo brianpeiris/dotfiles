@@ -188,6 +188,7 @@ map <Leader>s :wa<CR>
 map <Leader>hi :noh<CR>
 map <Leader>cc <C-w>c
 map <Leader>y myggVG"+y`y
+map <Leader>r :Rg <C-r><C-w><CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
