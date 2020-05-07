@@ -169,6 +169,16 @@ command! -nargs=1 Commit Gwrite | Gcommit -m <q-args>
 
 command! -nargs=+ Rg Ack! <args>
 
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 " Strip trailing spaces on save
 " autocmd BufWritePre * :%s/\s\+$//e
 
@@ -183,6 +193,7 @@ augroup END
 " -- Mappings
 " --
 
+map <Leader>r :Rg <C-r>"<CR>
 map <Leader>d :e %:h<CR>
 map <Leader>s :wa<CR>
 map <Leader>hi :noh<CR>

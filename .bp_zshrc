@@ -90,6 +90,11 @@ alias gpm='git pull origin master'
 alias gpm='git pull origin master'
 alias gbv='git branch -vv'
 alias code='cd "$winhome/Code"'
+alias gct='git checkout --theirs'
+function gcta {
+	git checkout --theirs "$1"
+	git add "$1"
+}
 function gcm {
 	git commit -m "$*"
 }
@@ -170,6 +175,7 @@ function github_download {
 alias ghd=github_download
 
 alias ns='npm start'
+alias nd='npm run dev'
 
 alias hpl='hub pr list'
 alias hpc='hub pr checkout'
@@ -222,6 +228,9 @@ alias im="iex -S mix"
 alias ms="mix phx.server"
 alias kb="killall -9 beam.smp"
 
+alias dun="du -d1 | sort -n"
+alias duh="du -hd1"
+
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export FZF_DEFAULT_COMMAND='rg -l -g "!node_modules" ""'
@@ -251,3 +260,24 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 
 DISABLE_AUTO_TITLE="true"
 export LESS="XRF"
+
+function open_host_link {
+	echo "$1" > /media/sf_bp/portal/link.txt
+}
+alias ohl=open_host_link
+
+function dt {
+	ohl "https://github.com/mrdoob/three.js/commit/$1"
+}
+function mt {
+	ohl "https://github.com/MozillaReality/three.js/commit/$1"
+}
+function nln {
+	REALPATH=$(realpath "$1")
+	NAME=$2
+	rm -rf "node_modules/$NAME"
+	ln -s "$REALPATH" "node_modules/$NAME"
+}
+function lln {
+	ls -la $1 | rg '^l'
+}
