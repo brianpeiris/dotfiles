@@ -11,56 +11,6 @@ function banner() {
 
 script_path=$(dirname $(readlink -f $0))
 
-banner "add vim ppa"
-if [ "$(ls /etc/apt/sources.list.d/jonathonf*)" == "" ]; then
-  sudo add-apt-repository -y ppa:jonathonf/vim
-fi
-if [ "$(ls /etc/apt/sources.list.d/git-core*)" == "" ]; then
-  sudo add-apt-repository -y ppa:git-core/ppa
-fi
-
-banner "update apt"
-curr_date=$(date -I)
-last_update=$(stat /var/cache/apt/pkgcache.bin | grep -i modify | cut -d' ' -f2)
-if [[ "$curr_date" > "$last_update" ]]; then
-  sudo apt update
-fi
-
-banner "install latest git"
-sudo apt install -y git
-
-banner "install curl"
-if ! which curl; then
-  sudo apt install -y curl
-fi
-
-if grep -q bash <<<$SHELL; then
-  banner "install zsh"
-  sudo apt install -y zsh
-  banner "installing ohmyzsh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-if which fc-cache; then
-  if [ "$(ls ~/.local/share/fonts/*Nerd*)" == "" ]; then
-    banner "install nerd font"
-    mkdir -p ~/.local/share/fonts
-    cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
-    fc-cache -f -v
-  fi
-fi
-
-banner "install vim"
-sudo apt install -y vim-gnome
-
-banner "install tmux"
-sudo apt install -y tmux
-
-# Make .tmp dir for vim
-if [ ! -e ~/.tmp ]; then
-  mkdir ~/.tmp
-fi
-
 banner "install ruby"
 if ! which ruby; then
   sudo apt install -y ruby
@@ -86,34 +36,15 @@ if ! which rg; then
   rm ripgrep_0.8.1_amd64.deb
 fi
 
-banner "install hub"
-if [ ! -e ~/.local/bin/hub ]; then
-  version=2.5.0
-  name="hub-linux-amd64-$version"
-  wget https://github.com/github/hub/releases/download/v$version/$name.tgz
-  mkdir -p ~/.local/bin/
-  tar xz -C ~/.local/bin/ -f $name.tgz
-  ln -s ~/.local/bin/$name/bin/hub ~/.local/bin/hub
-  rm $name.tgz
-fi
-
 if ! which fzf; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
-fi
-
-banner "install vundle"
-if [ ! -e ~/.vim/bundle/Vundle.vim ]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
 # Link vimrc
 if [ ! -e ~/.vimrc ]; then
   ln -s $script_path/.vimrc ~/.vimrc
 fi
-
-banner "install vim plugins"
-vim +PluginInstall +qa
 
 # Link tmux.conf
 if [ ! -e ~/.tmux.conf ]; then

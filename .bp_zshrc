@@ -11,21 +11,6 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M viins '^P' history-incremental-search-backward
 bindkey -M viins '^N' history-incremental-search-backward
 
-winuser="$(cmd.exe /c 'echo %username%' 2>/dev/null | tr -d '\r')"
-winhome="/mnt/c/Users/$winuser"
-
-if [ ! -e $winhome ]; then
-	winhome=$HOME
-fi
-
-adhoc="$winhome/.adhoc_zshrc"
-alias ea='vim $adhoc'
-alias ec='vim ~/dotfiles/.bp_zshrc'
-alias rc='source ~/dotfiles/.bp_zshrc'
-alias ev='vim ~/.vimrc'
-
-alias ~~='cd "$winhome"'
-
 function start_ssh_agent {
 	if [ -z "$SSH_AGENT_PID" ]; then
 		eval `ssh-agent -s` > /dev/null
@@ -34,53 +19,6 @@ function start_ssh_agent {
 }
 alias sa=start_ssh_agent
 start_ssh_agent
-
-function run_smooth {
-	MAX_CHARS=${MAX_CHARS:-120}
-	MAX_LINES=${MAX_LINES:-20}
-	oldoutput=""
-	while (true) {
-		echo $*
-		output=$(unbuffer $* 2>&1 | cut -c -$MAX_CHARS | head -n $MAX_LINES)
-		if [[ "$output" != "$oldoutput" ]]
-		then
-			clear
-			tput cup 2 0
-			echo -E "$output"
-			oldoutput="$output"
-		fi
-		tput cup 0 0
-		echo $(date)
-		sleep 1
-	}
-}
-alias rs=run_smooth
-
-function android_ip {
-	adb shell ifconfig | grep "inet addr" | grep -v 127 | cut -d":" -f2 | cut -d" " -f1
-}
-alias aip=android_ip
-function adb_remote {
-	ip=$(android_ip)
-	adb tcpip 5555
-	adb connect $ip
-}
-alias adbr=adb_remote
-alias adbi='adb install -r'
-alias adbd='adb disconnect'
-alias adbl='adb devices'
-alias awak='adb shell input keyevent 26'
-alias atemp='adb shell "while true; do cat /sys/devices/virtual/thermal/thermal_zone0/temp; sleep 1; done"'
-alias abat='adb shell "while true; do dumpsys battery | grep level | cut -d\" \" -f4; sleep 1; done"'
-function acpu {
-	while true; do
-		adb shell 'top -m 1 -n 1 | grep User | grep User | head -1 | cut -d" " -f2 | cut -d% -f1';
-	done
-}
-
-function plot {
-	feedgnuplot --stream --terminal "dumb 160,40" --xlen 160 --unset grid --title $1 --ymin $2 --ymax $3
-}
 
 alias ginit='git init && git add . && git commit -m "initial commit"'
 alias gname='git rev-parse --abbrev-ref HEAD'
