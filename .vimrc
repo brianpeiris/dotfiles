@@ -1,3 +1,4 @@
+" vim-plug
 call plug#begin()
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf'
@@ -17,6 +18,7 @@ set ts=4
 set sw=4
 set et
 set nofixeol
+set hlsearch
 
 set ignorecase
 set smartcase
@@ -33,7 +35,7 @@ highlight Search term=reverse cterm=reverse gui=reverse
 
 let mapleader=' '
 
-" python-syntax
+" vim-python/python-syntax
 let g:python_highlight_all = 1
 
 let g:NERDTreeMapJumpNextSibling=''
