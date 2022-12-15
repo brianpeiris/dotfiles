@@ -2,6 +2,7 @@
 call plug#begin()
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-tmux-navigator'

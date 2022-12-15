@@ -10,3 +10,4 @@ Dev setup essentials:
 - [nvm](https://github.com/nvm-sh/nvm)
 - [tpm](https://github.com/tmux-plugins/tpm)
 - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+- [bat](https://github.com/sharkdp/bat)
