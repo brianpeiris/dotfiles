@@ -10,6 +10,7 @@ export PS1="\[\033[38;5;4m\]\W\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
 
 alias ea='vim ~/.bash_aliases'
 alias ra='source ~/.bash_aliases'
+alias el='vim ~/.local_aliases'
 
 alias trr='tmux resize-pane -y'
 
@@ -45,6 +46,9 @@ alias pushto='pusht origin'
 alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 alias grbo='git rebase origin/master'
 
+alias dc='docker-compose'
+alias dce='dc exec'
+
 function naut() {
   nautilus $1 > /dev/null 2>&1 &
 }
@@ -65,3 +69,14 @@ function nv() {
 alias ns='npm run start'
 
 alias bell='aplay /usr/share/sounds/sound-icons/piano-3.wav > /dev/null 2>&1'
+
+function three() {
+  tmux split-window -h
+  tmux split-window -h
+  tmux resize-pane -t0 -x25%
+  tmux resize-pane -t1 -x50%
+  tmux select-pane -t1
+}
+
+
+[ -s ~/.local_aliases ] && source ~/.local_aliases

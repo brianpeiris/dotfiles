@@ -1,5 +1,6 @@
 " vim-plug
 call plug#begin()
+Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
