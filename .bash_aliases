@@ -12,6 +12,8 @@ alias ea='vim ~/.bash_aliases'
 alias ra='source ~/.bash_aliases'
 alias el='vim ~/.local_aliases'
 
+alias diff='diff -u --color'
+
 alias trr='tmux resize-pane -y'
 
 alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-mode --directory'
