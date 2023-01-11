@@ -24,6 +24,8 @@ set hlsearch
 
 set ignorecase
 set smartcase
+set autoindent
+set smartindent
 
 set number
 set relativenumber
