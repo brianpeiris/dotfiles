@@ -31,6 +31,7 @@ set number
 set relativenumber
 
 set fdm=indent
+set clipboard=unnamedplus
 
 set cursorline
 
