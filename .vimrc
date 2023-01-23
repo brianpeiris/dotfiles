@@ -26,6 +26,7 @@ set ignorecase
 set smartcase
 set autoindent
 set smartindent
+set lbr
 
 set number
 set relativenumber
@@ -59,4 +60,4 @@ map <Leader>g :Rg \b<C-R><C-W>\b<CR>
 map <Leader>n :noh<CR>
 
 command! Merge /[<=>]\{7}
-command! DiffOrig vert new | set bt=nofile | r
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
