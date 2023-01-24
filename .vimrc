@@ -27,6 +27,7 @@ set smartcase
 set autoindent
 set smartindent
 set lbr
+set breakindent
 
 set number
 set relativenumber
