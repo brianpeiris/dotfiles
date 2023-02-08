@@ -11,3 +11,4 @@ Dev setup essentials:
 - [tpm](https://github.com/tmux-plugins/tpm)
 - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - [bat](https://github.com/sharkdp/bat)
+- [powerline-shell](https://github.com/b-ryan/powerline-shell)

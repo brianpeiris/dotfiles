@@ -6,7 +6,14 @@ export VISUAL=$EDITOR
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export PS1="\[\033[38;5;4m\]\W\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
+# https://github.com/b-ryan/powerline-shell
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 alias ea='vim ~/.bash_aliases'
 alias ra='source ~/.bash_aliases'
@@ -15,6 +22,8 @@ alias el='vim ~/.local_aliases'
 alias notes='vim ~/Documents/notes.txt'
 
 alias diff='diff -u --color'
+
+alias rg='rg -S'
 
 alias trr='tmux resize-pane -y'
 
@@ -49,6 +58,9 @@ function pusht {
 alias pushto='pusht origin'
 alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 alias grbo='git rebase origin/master'
+alias gskip='git update-index --skip-worktree'
+alias gnoskip='git update-index --no-skip-worktree'
+alias glsskip='git ls -t | rg "^S"'
 
 alias dc='docker-compose'
 alias dce='dc exec'

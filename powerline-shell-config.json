@@ -1,0 +1,8 @@
+{
+  "mode": "flat",
+  "theme": "basic",
+  "segments": ["exit_code", "cwd", "git", "root"],
+  "cwd": {
+    "mode": "dironly"
+  }
+}

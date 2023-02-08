@@ -43,9 +43,9 @@ set clipboard=unnamedplus
 
 set cursorline
 
-set directory=$TEMP//
-set backupdir=$TEMP//
-set undodir=$TEMP//
+set directory=$HOME/.tmp//
+set backupdir=$HOME/.tmp//
+set undodir=$HOME/.tmp//
 
 colorscheme Monokai
 highlight Search term=reverse cterm=reverse gui=reverse
@@ -59,6 +59,8 @@ let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 
 let g:lsp_document_code_action_signs_enabled=0
+let g:lsp_diagnostics_virtual_text_insert_mode_enabled=0
+let g:lsp_diagnostics_virtual_text_enabled=1
 
 let g:gutentags_file_list_command='rg --files'
 
@@ -72,7 +74,8 @@ map <Leader>ec :sp $MYVIMRC<CR>
 map <Leader>rc :source $MYVIMRC<CR>
 map <Leader>es :sp ~/.config/nvim/UltiSnips<CR>
 map <Leader>d :e %:p:h<CR>
-map <Leader>g :Rg \b<C-R><C-W>\b<CR>
+nmap <Leader>g :Rg \b<C-R><C-W>\b<CR>
+vmap <Leader>g y:Rg <C-R>"<CR>
 map <Leader>h :noh<CR>
 
 map <Leader>n :LspRename<CR>
