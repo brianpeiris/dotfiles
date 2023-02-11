@@ -21,18 +21,21 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
-set sts=4
-set ts=4
-set sw=4
-set et
-set nofixeol
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 set hlsearch
+set nofixeol
 
 set ignorecase
 set smartcase
+
 set autoindent
 set smartindent
-set lbr
+
+set linebreak
 set breakindent
 
 set number

@@ -20,6 +20,7 @@ alias ra='source ~/.bash_aliases'
 alias el='vim ~/.local_aliases'
 
 alias notes='vim ~/Documents/notes.txt'
+alias todo='vim ~/Documents/todo.txt'
 
 alias diff='diff -u --color'
 
@@ -94,5 +95,6 @@ function three() {
   tmux select-pane -t1
 }
 
+alias bell='aplay /usr/share/sounds/sound-icons/piano-3.wav > /dev/null 2>&1'
 
 [ -s ~/.local_aliases ] && source ~/.local_aliases
