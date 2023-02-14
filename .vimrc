@@ -25,9 +25,9 @@ set softtabstop=4
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set nofixeol
 
 set hlsearch
-set nofixeol
 
 set ignorecase
 set smartcase
@@ -40,11 +40,12 @@ set breakindent
 
 set number
 set relativenumber
-
-set fdm=indent
-set clipboard=unnamedplus
-
 set cursorline
+
+set foldmethod=indent
+set foldignore=
+
+set clipboard=unnamedplus
 
 set directory=$HOME/.tmp//
 set backupdir=$HOME/.tmp//
@@ -62,8 +63,8 @@ let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 
 let g:lsp_document_code_action_signs_enabled=0
-let g:lsp_diagnostics_virtual_text_insert_mode_enabled=0
-let g:lsp_diagnostics_virtual_text_enabled=1
+"let g:lsp_diagnostics_virtual_text_insert_mode_enabled=0
+"let g:lsp_diagnostics_virtual_text_enabled=1
 
 let g:gutentags_file_list_command='rg --files'
 
