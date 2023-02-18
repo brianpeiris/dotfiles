@@ -1,7 +1,10 @@
 {
   "mode": "flat",
   "theme": "basic",
-  "segments": ["exit_code", "cwd", "git", "root"],
+  "segments": ["exit_code", "time", "cwd", "git", "root"],
+  "time": {
+    "format": "%H:%M"
+  },
   "cwd": {
     "mode": "dironly"
   }

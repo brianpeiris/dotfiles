@@ -63,8 +63,6 @@ let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 
 let g:lsp_document_code_action_signs_enabled=0
-"let g:lsp_diagnostics_virtual_text_insert_mode_enabled=0
-"let g:lsp_diagnostics_virtual_text_enabled=1
 
 let g:gutentags_file_list_command='rg --files'
 
