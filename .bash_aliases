@@ -22,6 +22,7 @@ alias el='vim ~/.local_aliases'
 alias notes='vim ~/Documents/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
+alias cat='batcat'
 alias diff='diff -u --color'
 
 alias rg='rg -S'

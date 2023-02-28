@@ -1,7 +1,7 @@
 {
   "mode": "flat",
   "theme": "basic",
-  "segments": ["exit_code", "time", "cwd", "git", "root"],
+  "segments": ["exit_code", "time", "cwd", "git", "virtual_env", "root"],
   "time": {
     "format": "%H:%M"
   },
