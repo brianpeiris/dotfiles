@@ -64,6 +64,11 @@ alias gskip='git update-index --skip-worktree'
 alias gnoskip='git update-index --no-skip-worktree'
 alias glsskip='git ls -t | rg "^S"'
 
+function grhb {
+  fetch
+  git reset --hard origin/$(gname)
+}
+
 alias dc='docker-compose'
 alias dce='dc exec'
 
