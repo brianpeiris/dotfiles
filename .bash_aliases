@@ -71,6 +71,9 @@ function grhb {
 
 alias dc='docker-compose'
 alias dce='dc exec'
+function dh {
+  docker run -it --net host --rm -v "$PWD":/app -w /app $*
+}
 
 function naut() {
   nautilus $1 > /dev/null 2>&1 &
