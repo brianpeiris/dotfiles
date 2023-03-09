@@ -88,3 +88,4 @@ map <Leader>r :LspReferences<CR>
 
 command! Merge /[<=>]\{7}
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+command! -nargs=1 Silent execute 'silent !' . <q-args> | execute 'redraw!'
