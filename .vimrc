@@ -14,6 +14,7 @@ Plug 'vim-python/python-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
