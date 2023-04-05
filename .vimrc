@@ -17,6 +17,7 @@ Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'prettier/vim-prettier'
+Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
