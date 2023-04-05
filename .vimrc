@@ -9,11 +9,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sleuth'
 Plug 'dense-analysis/ale'
+Plug 'evanleck/vim-svelte'
+Plug 'leafgarland/typescript-vim'
 Plug 'preservim/nerdtree'
 Plug 'vim-python/python-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'prettier/vim-prettier'
 
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
@@ -21,9 +24,9 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set nofixeol
 
@@ -83,7 +86,7 @@ map <Leader>h :noh<CR>
 map <Leader>n :LspRename<CR>
 map <Leader>i :LspHover<CR>
 map <Leader>s :LspDefinition<CR>
-map <Leader>p :LspPeekDefinition<CR>
+map <Leader>f :LspPeekDefinition<CR>
 map <Leader>r :LspReferences<CR>
 
 command! Merge /[<=>]\{7}
