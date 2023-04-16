@@ -1,8 +1,11 @@
+# Vi keybindings
 set -o vi
 
+# Default editor
 export EDITOR=vim
 export VISUAL=$EDITOR
 
+# Have FZF use fd so that it respects .gitignore
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix'
@@ -16,20 +19,24 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
+# Quickly edit and reload aliases
 alias ea='vim ~/.bash_aliases'
 alias ra='source ~/.bash_aliases'
 alias el='vim ~/.local_aliases'
 
+# Access to frequently used text files
 alias notes='vim ~/Documents/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
+# Batcat for colorful cat output
 alias cat='batcat'
-alias diff='diff -u --color'
 
-alias rg='rg -S'
+# Nicer diff output
+alias diff='diff --unified --color'
 
-alias trr='tmux resize-pane -y'
+alias rg='rg --smart-case'
 
+# Serve a directory (with live reload)
 alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-mode --directory'
 
 function mcd {
@@ -37,14 +44,17 @@ function mcd {
   cd $1
 }
 
+# Setup SSH keys
 function sa {
   eval `ssh-agent -s` > /dev/null
   ssh-add
 }
 
+# Git shortcuts
 alias fetch='git fetch'
 alias push='git push'
 alias pull='git pull'
+# Override SCM Breeze's alias
 unalias gcm > /dev/null 2>&1
 function gcm {
   git commit -m "$*"
@@ -70,16 +80,6 @@ function grhb {
   git reset --hard origin/$(gname)
 }
 
-alias dc='docker-compose'
-alias dce='dc exec'
-function dh {
-  docker run -it --net host --rm -v "$PWD":/app -w /app $*
-}
-
-function naut() {
-  nautilus $1 > /dev/null 2>&1 &
-}
-
 function clone() {
   user=`echo $1 | cut -d'/' -f1`
   repo=`echo $1 | cut -d'/' -f2`
@@ -89,14 +89,21 @@ function clone() {
   cd $repo
 }
 
+# Docker shortcuts
+alias dc='docker-compose'
+alias dce='dc exec'
+function dh {
+  docker run -it --net host --rm -v "$PWD":/app -w /app $*
+}
+
+# Node shortcuts
 function nv() {
   echo "node $(node --version)"
   echo "npm $(npm --version)"
 }
 alias ns='npm run start'
 
-alias bell='aplay /usr/share/sounds/sound-icons/piano-3.wav > /dev/null 2>&1'
-
+# Tmux shortcuts
 function three() {
   tmux split-window -h
   tmux split-window -h
@@ -105,6 +112,14 @@ function three() {
   tmux select-pane -t1
 }
 
+alias trr='tmux resize-pane -y'
+
+# Misc shortcuts
+function naut() {
+  nautilus $1 > /dev/null 2>&1 &
+}
+
 alias bell='aplay /usr/share/sounds/sound-icons/piano-3.wav > /dev/null 2>&1'
 
+# Load per-machine aliases
 [ -s ~/.local_aliases ] && source ~/.local_aliases
