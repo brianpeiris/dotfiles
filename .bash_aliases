@@ -29,7 +29,7 @@ alias notes='vim ~/Documents/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
 # Batcat for colorful cat output
-alias cat='batcat'
+alias cat='bat'
 
 # Nicer diff output
 alias diff='diff --unified --color'
@@ -66,10 +66,10 @@ alias gca='git commit --amend'
 alias gcne='git commit --amend --no-edit'
 alias gname='git rev-parse --abbrev-ref HEAD'
 function pusht {
-  git push -u $1 $(gname)
+  git push -u $1 $(gname) ${@:2}
 }
 alias pushto='pusht origin'
-alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
+alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev|develop)" | xargs git branch -d'
 alias grbo='git rebase origin/master'
 alias gskip='git update-index --skip-worktree'
 alias gnoskip='git update-index --no-skip-worktree'
