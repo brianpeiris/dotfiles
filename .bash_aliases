@@ -37,7 +37,7 @@ alias diff='diff --unified --color'
 alias rg='rg --smart-case'
 
 # Serve a directory (with live reload)
-alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-mode --directory'
+alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-mode'
 
 function mcd {
   mkdir $1
@@ -95,6 +95,10 @@ alias dce='dc exec'
 function dh {
   docker run -it --net host --rm -v "$PWD":/app -w /app $*
 }
+function clean-docker {
+  docker container prune -f
+  docker volume prune -f
+}
 
 # Node shortcuts
 function nv() {
@@ -110,6 +114,12 @@ function three() {
   tmux resize-pane -t0 -x25%
   tmux resize-pane -t1 -x50%
   tmux select-pane -t1
+}
+function layout() {
+  tmux split-window -v
+  tmux split-window -h
+  tmux resize-pane -t1 -y20
+  tmux select-pane -t0
 }
 
 alias trr='tmux resize-pane -y'
