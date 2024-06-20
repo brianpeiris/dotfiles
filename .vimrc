@@ -14,12 +14,13 @@ Plug 'preservim/nerdtree'
 "Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'prettier/vim-prettier'
+Plug 'adnan007d/vim-prettier'
 Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'evanleck/vim-svelte'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-python/python-syntax'
+Plug 'pangloss/vim-javascript'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
@@ -72,8 +73,6 @@ let g:python_highlight_all = 1
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 let g:NERDTreeCustomOpenArgs={'file': {'reuse': '', 'where': 'p'}, 'dir': {}}
-
-let g:lsp_document_code_action_signs_enabled=0
 
 let g:gutentags_file_list_command='rg --files'
 
