@@ -1,6 +1,8 @@
 # Vi keybindings
 set -o vi
 
+export PAGER=less
+
 # Default editor
 export EDITOR=vim
 export VISUAL=$EDITOR
@@ -32,7 +34,7 @@ alias todo='vim ~/Documents/todo.txt'
 alias cat='bat'
 
 # Nicer diff output
-alias diff='diff --unified --color'
+alias diff='diff --unified --color=always'
 
 alias rg='rg --smart-case'
 
@@ -73,7 +75,7 @@ alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev|develop)" | xar
 alias grbo='git rebase origin/master'
 alias gskip='git update-index --skip-worktree'
 alias gnoskip='git update-index --no-skip-worktree'
-alias glsskip='git ls -t | rg "^S"'
+alias glsskip='git ls-files -t | rg "^S"'
 
 function grhb {
   fetch
@@ -110,6 +112,15 @@ function three() {
   tmux resize-pane -t0 -x25%
   tmux resize-pane -t1 -x50%
   tmux select-pane -t1
+}
+
+function rows() {
+  tmux split-window -v
+  tmux split-window -v
+  tmux resize-pane -t0 -y33%
+  tmux resize-pane -t1 -y33%
+  tmux resize-pane -t2 -y33%
+  tmux select-pane -t0
 }
 
 alias trr='tmux resize-pane -y'

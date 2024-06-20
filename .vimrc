@@ -11,21 +11,20 @@ Plug 'tpope/vim-sleuth'
 Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'prettier/vim-prettier'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'madox2/vim-ai'
 
 Plug 'evanleck/vim-svelte'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-python/python-syntax'
 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
+Plug 'github/copilot.vim'
 call plug#end()
 
 set softtabstop=2
@@ -52,11 +51,15 @@ set cursorline
 set foldmethod=indent
 set foldignore=
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 set directory=$HOME/.tmp//
 set backupdir=$HOME/.tmp//
 set undodir=$HOME/.tmp//
+
+set completeopt+=longest
+
+set mouse=
 
 colorscheme Monokai
 highlight Search term=reverse cterm=reverse gui=reverse
@@ -68,10 +71,15 @@ let g:python_highlight_all = 1
 
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
+let g:NERDTreeCustomOpenArgs={'file': {'reuse': '', 'where': 'p'}, 'dir': {}}
 
 let g:lsp_document_code_action_signs_enabled=0
 
 let g:gutentags_file_list_command='rg --files'
+
+let g:prettier#config#print_width = '100'
+
+let g:copilot_filetypes = {'text': v:false}
 
 imap <C-s> <Esc>:write<CR>
 map <C-s> :write<CR>
@@ -87,11 +95,7 @@ nmap <Leader>g :Rg \b<C-R><C-W>\b<CR>
 vmap <Leader>g y:Rg <C-R>"<CR>
 map <Leader>h :noh<CR>
 
-map <Leader>n :LspRename<CR>
-map <Leader>i :LspHover<CR>
-map <Leader>s :LspDefinition<CR>
-map <Leader>f :LspPeekDefinition<CR>
-map <Leader>r :LspReferences<CR>
+map <Leader>i :ALEHover<CR>
 
 command! Merge /[<=>]\{7}
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
