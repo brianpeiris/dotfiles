@@ -124,12 +124,15 @@ function layout() {
   tmux select-pane -t0
 }
 
-function rows() {
+function grid() {
   tmux split-window -v
   tmux split-window -v
   tmux resize-pane -t0 -y33%
   tmux resize-pane -t1 -y33%
   tmux resize-pane -t2 -y33%
+  tmux split-window -t0 -h
+  tmux split-window -t2 -h
+  tmux split-window -t4 -h
   tmux select-pane -t0
 }
 
