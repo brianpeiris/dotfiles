@@ -2,7 +2,7 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -13,17 +13,16 @@ Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'preservim/nerdcommenter'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'adnan007d/vim-prettier'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'madox2/vim-ai'
 
-Plug 'evanleck/vim-svelte'
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'vim-python/python-syntax'
 Plug 'pangloss/vim-javascript'
 
 Plug 'github/copilot.vim'
+Plug 'ryvnf/readline.vim'
 call plug#end()
 
 set softtabstop=2
@@ -73,6 +72,9 @@ let g:gutentags_file_list_command='rg --files'
 
 let g:copilot_filetypes = { 'text': v:false }
 
+let g:ale_fixers = { 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'javascript': ['prettier'], 'html': ['prettier'], 'css': ['prettier'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
+
 imap <C-s> <Esc>:write<CR>
 map <C-s> :write<CR>
 
@@ -88,6 +90,7 @@ vmap <Leader>g y:Rg <C-R>"<CR>
 map <Leader>h :noh<CR>
 
 map <Leader>i :ALEHover<CR>
+map <Leader>p <Plug>(ale_fix)
 
 command! Merge /[<=>]\{7}
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
