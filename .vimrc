@@ -11,7 +11,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'adnan007d/vim-prettier'
@@ -75,6 +76,8 @@ let mapleader=' '
 
 " vim-python/python-syntax
 let g:python_highlight_all = 1
+
+let g:UltiSnipsExpandTrigger="<C-p>"
 
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
