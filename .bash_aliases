@@ -1,6 +1,8 @@
 # Vi keybindings
 set -o vi
 
+export PAGER=less
+
 # Default editor
 export EDITOR=vim
 export VISUAL=$EDITOR
@@ -25,7 +27,7 @@ alias ra='source ~/.bash_aliases'
 alias el='vim ~/.local_aliases'
 
 # Access to frequently used text files
-alias notes='vim ~/Documents/notes.txt'
+alias notes='vim ~/Documents/notes/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
 # Batcat for colorful cat output
@@ -33,7 +35,7 @@ alias ocat='cat'
 alias cat='batcat'
 
 # Nicer diff output
-alias diff='diff --unified --color'
+alias diff='diff --unified --color=always'
 
 alias rg='rg --smart-case'
 
@@ -67,14 +69,14 @@ alias gca='git commit --amend'
 alias gcne='git commit --amend --no-edit'
 alias gname='git rev-parse --abbrev-ref HEAD'
 function pusht {
-  git push -u $1 $(gname)
+  git push -u $1 $(gname) ${@:2}
 }
 alias pushto='pusht origin'
-alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
+alias gbda='git branch --merged | egrep -v "(^\*|master|main|dev|develop)" | xargs git branch -d'
 alias grbo='git rebase origin/master'
 alias gskip='git update-index --skip-worktree'
 alias gnoskip='git update-index --no-skip-worktree'
-alias glsskip='git ls -t | rg "^S"'
+alias glsskip='git ls-files -t | rg "^S"'
 
 function grhb {
   fetch
@@ -122,6 +124,18 @@ function layout() {
   tmux split-window -v
   tmux split-window -h
   tmux resize-pane -t1 -y20
+  tmux select-pane -t0
+}
+
+function grid() {
+  tmux split-window -v
+  tmux split-window -v
+  tmux resize-pane -t0 -y33%
+  tmux resize-pane -t1 -y33%
+  tmux resize-pane -t2 -y33%
+  tmux split-window -t0 -h
+  tmux split-window -t2 -h
+  tmux split-window -t4 -h
   tmux select-pane -t0
 }
 
