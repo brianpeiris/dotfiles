@@ -13,3 +13,4 @@ Dev setup essentials:
 - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - vim keybinding helpers for tmux
 - [bat](https://github.com/sharkdp/bat) - nicer cat with syntax highlighting
 - [powerline-shell](https://github.com/b-ryan/powerline-shell) - a nice shell prompt
+- [dust](https://github.com/bootandy/dust) - nicer du

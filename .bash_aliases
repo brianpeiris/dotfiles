@@ -29,6 +29,7 @@ alias notes='vim ~/Documents/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
 # Batcat for colorful cat output
+alias ocat='cat'
 alias cat='batcat'
 
 # Nicer diff output
@@ -106,6 +107,8 @@ function nv() {
   echo "npm $(npm --version)"
 }
 alias ns='npm run start'
+alias nd='npm run dev'
+alias nr='npm run'
 
 # Tmux shortcuts
 function three() {
@@ -124,10 +127,24 @@ function layout() {
 
 alias trr='tmux resize-pane -y'
 
+alias dus='du -d1 | sort -n'
+alias du='dust -d1'
+
 # Misc shortcuts
 function naut() {
   nautilus $1 > /dev/null 2>&1 &
 }
+
+function enum() {
+  local i=1
+  while IFS= read -r line; do
+    echo "[$i] $line"
+    declare -g "e$i=$line"
+    ((i++))
+  done
+}
+
+function e { enum < <(eval "$(fc -ln -1)"); }
 
 alias bell='aplay /usr/share/sounds/sound-icons/piano-3.wav > /dev/null 2>&1'
 
