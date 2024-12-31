@@ -65,6 +65,12 @@ set mouse=
 colorscheme Monokai
 highlight Search term=reverse cterm=reverse gui=reverse
 
+highlight Checkbox ctermfg=brown
+highlight Done ctermfg=green
+
+autocmd BufRead,BufNewFile *.txt syntax match Checkbox /\[ \]/
+autocmd BufRead,BufNewFile *.txt syntax match Done /\[x\]/
+
 let mapleader=' '
 
 " vim-python/python-syntax
@@ -90,11 +96,14 @@ map <Leader>ec :sp $MYVIMRC<CR>
 map <Leader>rc :source $MYVIMRC<CR>
 map <Leader>es :sp ~/.config/nvim/UltiSnips<CR>
 map <Leader>d :e %:p:h<CR>
-nmap <Leader>g :Rg \b<C-R><C-W>\b<CR>
+nmap <Leader>g :Rg \b<C-R>=escape(expand('<cword>'), '\')<CR>\b<CR>
 vmap <Leader>g y:Rg <C-R>"<CR>
 map <Leader>h :noh<CR>
+noremap <Leader>cb i[ ] <Esc>
+imap <C-c> [ ] 
 
 map <Leader>i :ALEHover<CR>
+map <Leader>e :ALEDetail<CR>
 
 command! Merge /[<=>]\{7}
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
