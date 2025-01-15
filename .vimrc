@@ -53,7 +53,7 @@ set cursorline
 set foldmethod=indent
 set foldignore=
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 set directory=$HOME/.tmp//
 set backupdir=$HOME/.tmp//
