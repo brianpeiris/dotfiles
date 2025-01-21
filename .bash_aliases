@@ -27,7 +27,7 @@ alias ra='source ~/.bash_aliases'
 alias el='vim ~/.local_aliases'
 
 # Access to frequently used text files
-alias notes='vim ~/Documents/notes/notes.txt'
+alias notes='cd ~/Documents/notes; vim ~/Documents/notes/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
 # Batcat for colorful cat output
