@@ -15,7 +15,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
 "Plug 'ludovicchabant/vim-gutentags'
-Plug 'adnan007d/vim-prettier'
+Plug 'prettier/vim-prettier'
 Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'HerringtonDarkholme/yats.vim'
@@ -27,6 +27,8 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 
 Plug 'github/copilot.vim'
 Plug 'ryvnf/readline.vim'
+
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 set softtabstop=2
@@ -89,7 +91,7 @@ let g:prettier#config#print_width = '100'
 
 let g:copilot_filetypes = {'text': v:false}
 
-let g:ale_fixers = { 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'javascript': ['prettier'], 'html': ['prettier'], 'css': ['prettier'] }
+let g:ale_fixers = { 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'javascript': ['prettier'], 'html': ['prettier'], 'css': ['prettier'], 'json': ['prettier'] }
 let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
 
 imap <C-s> <Esc>:write<CR>
