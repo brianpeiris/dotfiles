@@ -62,7 +62,6 @@ set completeopt+=longest
 set mouse=
 
 colorscheme monokai_soda
-highlight Search term=reverse cterm=reverse gui=reverse
 
 highlight Checkbox ctermfg=brown
 highlight Done ctermfg=green
@@ -107,3 +106,4 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 command! -nargs=1 Silent execute 'silent !' . <q-args> | execute 'redraw!'
 
 lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}
+lua require'monokai'.setup{custom_hl_groups={Search={fg='#000000',bg='#FF0000',style='reverse'}}}
