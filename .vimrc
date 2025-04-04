@@ -80,7 +80,7 @@ let g:NERDTreeCustomOpenArgs={'file': {'reuse': '', 'where': 'p'}, 'dir': {}}
 let g:copilot_filetypes = {'text': v:false}
 
 let g:ale_fixers = { 'javascriptreact': ['prettier'], 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'javascript': ['prettier'], 'html': ['prettier'], 'css': ['prettier'], 'json': ['prettier'] }
-let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint'] }
 
 imap <C-s> <Esc>:write<CR>
 map <C-s> :write<CR>
