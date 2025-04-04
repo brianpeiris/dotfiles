@@ -12,6 +12,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix'
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # https://github.com/b-ryan/powerline-shell
 function _update_ps1() {
     PS1=$(powerline-shell $?)
@@ -27,7 +29,7 @@ alias ra='source ~/.bash_aliases'
 alias el='vim ~/.local_aliases'
 
 # Access to frequently used text files
-alias notes='vim ~/Documents/notes/notes.txt'
+alias notes='cd ~/Documents/notes; vim ~/Documents/notes/notes.txt'
 alias todo='vim ~/Documents/todo.txt'
 
 # Batcat for colorful cat output

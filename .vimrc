@@ -1,7 +1,7 @@
 " vim-plug
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'flazz/vim-colorschemes'
+Plug 'tanvirtin/monokai.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
@@ -14,19 +14,17 @@ Plug 'preservim/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
-"Plug 'ludovicchabant/vim-gutentags'
-Plug 'adnan007d/vim-prettier'
 Plug 'jeetsukumaran/vim-buffergator'
 
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'vim-python/python-syntax'
-Plug 'pangloss/vim-javascript'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
 Plug 'github/copilot.vim'
 Plug 'ryvnf/readline.vim'
+
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 set softtabstop=2
@@ -63,8 +61,7 @@ set completeopt+=longest
 
 set mouse=
 
-colorscheme Monokai
-highlight Search term=reverse cterm=reverse gui=reverse
+colorscheme monokai_soda
 
 highlight Checkbox ctermfg=brown
 highlight Done ctermfg=green
@@ -74,29 +71,21 @@ autocmd BufRead,BufNewFile *.txt syntax match Done /\[x\]/
 
 let mapleader=' '
 
-" vim-python/python-syntax
-let g:python_highlight_all = 1
-
 let g:UltiSnipsExpandTrigger="<C-p>"
 
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 let g:NERDTreeCustomOpenArgs={'file': {'reuse': '', 'where': 'p'}, 'dir': {}}
 
-let g:gutentags_file_list_command='rg --files'
-
-let g:prettier#config#print_width = '100'
-
 let g:copilot_filetypes = {'text': v:false}
 
-let g:ale_fixers = { 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'javascript': ['prettier'], 'html': ['prettier'], 'css': ['prettier'], 'json': ['prettier'] }
+let g:ale_fixers = { 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'javascriptreact': ['prettier'], 'javascript': ['prettier'], 'html': ['prettier'], 'css': ['prettier'], 'json': ['prettier'] }
 let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'], 'typescriptreact': ['eslint'] }
 
 imap <C-s> <Esc>:write<CR>
 map <C-s> :write<CR>
 
 map <C-p> :FZF<CR>
-map <C-t> :Tags<CR>
 
 map <Leader>ec :sp $MYVIMRC<CR>
 map <Leader>rc :source $MYVIMRC<CR>
@@ -115,3 +104,6 @@ map <Leader>e :ALEDetail<CR>
 command! Merge /[<=>]\{7}
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 command! -nargs=1 Silent execute 'silent !' . <q-args> | execute 'redraw!'
+
+lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}
+lua require'monokai'.setup{custom_hl_groups={Search={fg='#000000',bg='#FF0000',style='reverse'}}}
