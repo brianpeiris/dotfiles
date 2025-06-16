@@ -142,6 +142,7 @@ function grid() {
 }
 
 alias trr='tmux resize-pane -y'
+alias tclear='tmux clear-history'
 
 alias dus='du -d1 | sort -n'
 alias du='dust -d1'
