@@ -30,7 +30,14 @@ alias el='vim ~/.local_aliases'
 
 # Access to frequently used text files
 alias notes='cd ~/Documents/notes; vim ~/Documents/notes/notes.txt'
-alias todo='vim ~/Documents/todo.txt'
+alias todo='vim ~/Documents/notes/todo.txt'
+
+function note() {
+  allarguments=("$*")
+  # replace spaces with hyphens
+  filename=$(echo "${allarguments[*]}.txt" | sed 's/ /-/g')
+  vim $filename
+}
 
 # Batcat for colorful cat output
 alias ocat='cat'
