@@ -14,3 +14,4 @@ Dev setup essentials:
 - [bat](https://github.com/sharkdp/bat) - nicer cat with syntax highlighting
 - [powerline-shell](https://github.com/b-ryan/powerline-shell) - a nice shell prompt
 - [dust](https://github.com/bootandy/dust) - nicer du
+- [duf](https://github.com/muesli/duf) - nicer df

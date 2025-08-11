@@ -153,6 +153,7 @@ alias tclear='tmux clear-history'
 
 alias dus='du -d1 | sort -n'
 alias du='dust -d1'
+alias duf='duf -hide-fs devtmpfs,tmpfs -hide-mp /var/snap/firefox/common/host-hunspell'
 
 # Misc shortcuts
 function naut() {
