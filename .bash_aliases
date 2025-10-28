@@ -45,6 +45,11 @@ function note() {
 alias ocat='cat'
 alias cat='batcat'
 
+# eza file listing
+EZNI='eza --header --no-user --group-directories-first --no-permissions -l --git'
+alias ez="$EZNI"
+alias ezi="$EZNI --git-ignore"
+
 # Nicer diff output
 alias diff='diff --unified --color=always'
 
