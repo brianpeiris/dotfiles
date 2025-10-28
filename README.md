@@ -15,3 +15,5 @@ Dev setup essentials:
 - [powerline-shell](https://github.com/b-ryan/powerline-shell) - a nice shell prompt
 - [dust](https://github.com/bootandy/dust) - nicer du
 - [duf](https://github.com/muesli/duf) - nicer df
+- [btop](https://github.com/aristocratos/btop) - nicer top
+- [xh](https://github.com/ducaale/xh) - nicer curl
