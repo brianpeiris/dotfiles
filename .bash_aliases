@@ -104,6 +104,7 @@ function clone() {
 # Docker shortcuts
 alias dc='docker-compose'
 alias dce='dc exec'
+alias dp='docker ps --format "table {{.Names}}"'
 function dh {
   docker run -it --net host --rm -v "$PWD":/app -w /app $*
 }
