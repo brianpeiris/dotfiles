@@ -27,6 +27,8 @@ Plug 'ryvnf/readline.vim'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
+set exrc
+
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
@@ -75,11 +77,20 @@ let g:UltiSnipsExpandTrigger="<C-p>"
 
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
-let g:NERDTreeCustomOpenArgs={'file': {'reuse': '', 'where': 'p'}, 'dir': {}}
+let g:NERDTreeQuitOnOpen = 0
 
 let g:copilot_filetypes = {'text': v:false}
 
-let g:ale_fixers = { 'css': ['prettier'], 'html': ['prettier'], 'javascript': ['prettier'], 'javascriptreact': ['prettier'], 'json': ['prettier'], 'typescript': ['prettier'], 'typescriptreact': ['prettier'], 'python': ['ruff_format'] }
+let g:ale_fixers = {
+  \'css': ['prettier'],
+  \'html': ['prettier'],
+  \'javascript': ['prettier', 'biome'],
+  \'javascriptreact': ['prettier', 'biome'],
+  \'json': ['prettier'],
+  \'typescript': ['prettier', 'biome'],
+  \'typescriptreact': ['prettier', 'biome'],
+  \'python': ['ruff_format']
+\}
 let g:ale_linters = { 'javascript': ['eslint', 'tsserver'], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'], 'python': ['ruff'] }
 
 imap <C-s> <Esc>:write<CR>
@@ -91,6 +102,8 @@ map <Leader>ec :sp $MYVIMRC<CR>
 map <Leader>rc :source $MYVIMRC<CR>
 map <Leader>es :sp ~/.config/nvim/UltiSnips<CR>
 map <Leader>d :e %:p:h<CR>
+map <Leader>yy mmggVGy`m
+map <Leader>pp ggVGpzR
 nmap <Leader>g :Rg \b<C-R>=escape(expand('<cword>'), '\')<CR>\b<CR>
 vmap <Leader>g y:Rg <C-R>"<CR>
 map <Leader>h :noh<CR>
