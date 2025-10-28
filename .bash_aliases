@@ -3,6 +3,8 @@ set -o vi
 
 export PAGER=less
 
+export LESS="FRx2"
+
 # Default editor
 export EDITOR=vim
 export VISUAL=$EDITOR
