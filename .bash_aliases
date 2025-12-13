@@ -93,6 +93,11 @@ alias grbo='git rebase origin/master'
 alias gskip='git update-index --skip-worktree'
 alias gnoskip='git update-index --no-skip-worktree'
 alias glsskip='git ls-files -t | rg "^S"'
+function gnoskipall {
+  for file in $(glsskip | cut -d' ' -f2); do
+    gnoskip "$file"
+  done
+}
 
 function grhb {
   fetch
