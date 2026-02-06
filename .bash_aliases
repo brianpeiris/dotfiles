@@ -14,6 +14,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix'
 
+[ -f ~/Programs/z/z.sh ] && source ~/Programs/z/z.sh
+
 export PATH="$HOME/.local/bin:$PATH"
 
 # https://github.com/b-ryan/powerline-shell
@@ -41,6 +43,22 @@ function note() {
   vim $filename
 }
 
+function dnote() {
+  allarguments=("$*")
+  # replace spaces with hyphens
+  filename=$(echo "${allarguments[*]}" | sed 's/ /-/g')
+  d="$(date -Iminutes | cut -d'-' -f1-3)"
+  if [ $filename ]; then
+    vim $d-$filename.md
+  else 
+    vim $d.md
+  fi
+}
+
+function office() {
+  ~/Programs/LibreOffice-fresh.basic-x86_64.AppImage "$PWD/$1" 2>&1 >/dev/null &
+}
+
 # Batcat for colorful cat output
 alias ocat='cat'
 alias cat='batcat'
@@ -59,8 +77,8 @@ alias rg='rg --smart-case'
 alias bs='browser-sync start -s -w --no-open --no-notify --no-ghost-mode'
 
 function mcd {
-  mkdir $1
-  cd $1
+  mkdir "$1"
+  cd "$1"
 }
 
 # Setup SSH keys
@@ -180,6 +198,8 @@ function enum() {
 function e { enum < <(eval "$(fc -ln -1)"); }
 
 alias bell='aplay /usr/share/sounds/sound-icons/piano-3.wav > /dev/null 2>&1'
+
+alias rsync='rsync --progress -r'
 
 # Load per-machine aliases
 [ -s ~/.local_aliases ] && source ~/.local_aliases
