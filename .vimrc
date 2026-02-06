@@ -11,7 +11,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'preservim/nerdcommenter'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -21,7 +21,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 Plug 'ryvnf/readline.vim'
 
 Plug 'vim-airline/vim-airline'
@@ -75,23 +75,34 @@ let mapleader=' '
 
 let g:UltiSnipsExpandTrigger="<C-p>"
 
+let g:airline#extensions#wordcount#enabled = 1
+
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 let g:NERDTreeQuitOnOpen = 0
 
 let g:copilot_filetypes = {'text': v:false}
 
+let g:ale_rust_rustfmt_options = '--edition 2024'
+let g:ale_rust_cargo_use_clippy = 1
 let g:ale_fixers = {
   \'css': ['prettier'],
-  \'html': ['prettier'],
+  \'html': ['prettier', 'biome'],
   \'javascript': ['prettier', 'biome'],
   \'javascriptreact': ['prettier', 'biome'],
   \'json': ['prettier'],
   \'typescript': ['prettier', 'biome'],
   \'typescriptreact': ['prettier', 'biome'],
-  \'python': ['ruff_format']
+  \'python': ['ruff_format'],
+  \'rust': ['rustfmt'],
 \}
-let g:ale_linters = { 'javascript': ['eslint', 'tsserver'], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'], 'python': ['ruff'] }
+let g:ale_linters = {
+  \'rust': ['cargo'],
+  \'javascript': ['eslint', 'tsserver'],
+  \'typescript': ['eslint', 'tsserver'],
+  \'typescriptreact': ['eslint', 'tsserver'],
+  \'python': ['ruff'],
+\}
 
 imap <C-s> <Esc>:write<CR>
 map <C-s> :write<CR>
