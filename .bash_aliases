@@ -86,6 +86,10 @@ function sa {
   eval `ssh-agent -s` > /dev/null
   ssh-add
 }
+function sacb {
+  eval `ssh-agent -s` > /dev/null
+  ssh-add ~/.ssh/id_ed25519_cb
+}
 
 # Git shortcuts
 alias fetch='git fetch'

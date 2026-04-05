@@ -90,8 +90,8 @@ let g:ale_fixers = {
   \'javascript': ['prettier', 'biome'],
   \'javascriptreact': ['prettier', 'biome'],
   \'json': ['prettier'],
-  \'typescript': ['prettier', 'biome'],
-  \'typescriptreact': ['prettier', 'biome'],
+  \'typescript': ['prettier'],
+  \'typescriptreact': ['prettier'],
   \'python': ['ruff_format'],
   \'rust': ['rustfmt'],
 \}
